@@ -37,6 +37,13 @@ export function HistoricalTable({
   defaultFilter = 'all',
 }: HistoricalTableProps) {
   const [selectedFuel, setSelectedFuel] = useState<string>(defaultFilter);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const pageSize = 20;
+
+  const handleFuelFilterChange = (fuelId: string) => {
+    setSelectedFuel(fuelId);
+    setCurrentPage(1);
+  };
 
   const filteredRecords = useMemo(() => {
     if (!enableFuelFilter || selectedFuel === 'all') {
@@ -44,6 +51,13 @@ export function HistoricalTable({
     }
     return records.filter(r => r.productId === selectedFuel);
   }, [records, selectedFuel, enableFuelFilter]);
+
+  const totalPages = Math.ceil(filteredRecords.length / pageSize);
+
+  const paginatedRecords = useMemo(() => {
+    const start = (currentPage - 1) * pageSize;
+    return filteredRecords.slice(start, start + pageSize);
+  }, [filteredRecords, currentPage, pageSize]);
 
   return (
     <div className="space-y-4 w-full">
@@ -69,7 +83,7 @@ export function HistoricalTable({
                 <button
                   key={opt.id}
                   type="button"
-                  onClick={() => setSelectedFuel(opt.id)}
+                  onClick={() => handleFuelFilterChange(opt.id)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer select-none active:scale-95 flex items-center gap-1.5 ${
                     active
                       ? 'bg-emerald-700 text-white shadow-xs'
@@ -119,7 +133,7 @@ export function HistoricalTable({
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 font-medium text-slate-800 dark:text-slate-200">
-                {filteredRecords.map(record => {
+                {paginatedRecords.map(record => {
                   const change = VerificationEngine.calculateChange(record.pricePaisa, record.previousPricePaisa);
                   const formattedDate = new Intl.DateTimeFormat('en-PK', {
                     dateStyle: 'medium',
@@ -181,6 +195,72 @@ export function HistoricalTable({
               </tbody>
             </table>
           </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="px-4 py-3 sm:px-6 sm:py-4 bg-slate-50 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 select-none">
+              <div className="text-xs font-bold text-slate-600 dark:text-slate-400 text-center sm:text-left">
+                Showing <span className="font-black text-slate-900 dark:text-white">{(currentPage - 1) * pageSize + 1}</span> to{' '}
+                <span className="font-black text-slate-900 dark:text-white">{Math.min(currentPage * pageSize, filteredRecords.length)}</span> of{' '}
+                <span className="font-black text-slate-900 dark:text-white">{filteredRecords.length}</span> records
+              </div>
+
+              <div className="flex items-center gap-1.5 flex-wrap justify-center">
+                <button
+                  type="button"
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-black text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition shadow-2xs flex items-center gap-1"
+                >
+                  <span>←</span>
+                  <span>Previous</span>
+                </button>
+
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNumber => {
+                    if (totalPages > 7) {
+                      if (
+                        pageNumber !== 1 &&
+                        pageNumber !== totalPages &&
+                        Math.abs(pageNumber - currentPage) > 1
+                      ) {
+                        if (pageNumber === 2 || pageNumber === totalPages - 1) {
+                          return <span key={pageNumber} className="px-1 text-slate-400 text-xs">...</span>;
+                        }
+                        return null;
+                      }
+                    }
+
+                    const active = pageNumber === currentPage;
+                    return (
+                      <button
+                        key={pageNumber}
+                        type="button"
+                        onClick={() => setCurrentPage(pageNumber)}
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl text-xs font-black transition cursor-pointer select-none flex items-center justify-center ${
+                          active
+                            ? 'bg-emerald-700 text-white shadow-xs'
+                            : 'bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700'
+                        }`}
+                      >
+                        {pageNumber}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-black text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition shadow-2xs flex items-center gap-1"
+                >
+                  <span>Next</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

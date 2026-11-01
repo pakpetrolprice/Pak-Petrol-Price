@@ -100,9 +100,9 @@ export function TankFillCalculator({
         </p>
       </div>
 
-      <div className={compact ? 'flex flex-col space-y-4' : 'grid grid-cols-1 xl:grid-cols-12 gap-6 items-start'}>
+      <div className={compact ? 'flex flex-col space-y-4' : 'grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start'}>
         {/* Controls */}
-        <div className={`${compact ? 'w-full' : 'xl:col-span-7'} space-y-4 min-w-0`}>
+        <div className={`${compact ? 'w-full' : 'lg:col-span-7'} space-y-4 min-w-0`}>
           {/* Preset Selector */}
           <div>
             <label htmlFor="tank-preset-select" className="block text-xs font-black text-slate-800 dark:text-white uppercase tracking-wider mb-1.5">
@@ -269,7 +269,7 @@ export function TankFillCalculator({
         </div>
 
         {/* Results Panel */}
-        <div className={`${compact ? 'w-full' : 'xl:col-span-5'} bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-emerald-200/40 dark:from-slate-800 dark:via-slate-800/90 dark:to-emerald-950/40 rounded-2xl border border-emerald-300 dark:border-slate-700 p-4 sm:p-5 space-y-3.5 shadow-xs overflow-hidden`}>
+        <div className={`${compact ? 'w-full' : 'lg:col-span-5'} bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-emerald-200/40 dark:from-slate-800 dark:via-slate-800/90 dark:to-emerald-950/40 rounded-2xl border border-emerald-300 dark:border-slate-700 p-4 sm:p-5 space-y-3.5 shadow-xs overflow-hidden`}>
           <div className="min-w-0">
             <span className="text-xs font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300 block mb-1">
               {currentLevel === 0 ? 'Full Tank Fill-Up Cost' : 'Top-Off Refill Cost'}

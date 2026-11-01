@@ -31,27 +31,43 @@ export default async function CalculatorPage() {
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 max-w-4xl leading-relaxed font-medium">
           Plan fuel budgets for Pakistani motorbikes, hatchbacks, sedans, SUVs, and commercial vehicles with current officially verified OGRA petroleum prices.
         </p>
+        <div className="flex flex-wrap items-center gap-2 pt-1">
+          <a
+            href="#tank-fill-calculator"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 border border-slate-200 dark:border-slate-700 transition"
+          >
+            <span>⛽ 1. Fuel Tank Fill-Up Calculator</span>
+            <span>↓</span>
+          </a>
+          <a
+            href="#trip-cost-calculator"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 border border-slate-200 dark:border-slate-700 transition"
+          >
+            <span>⚡ 2. Trip &amp; Distance Fuel Calculator</span>
+            <span>↓</span>
+          </a>
+        </div>
       </div>
 
-      {/* 2-Column Side-by-Side Desktop Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+      {/* Sequential Full-Width Stacked Calculators */}
+      <div className="space-y-10 sm:space-y-14">
         {/* Tool 1: Fuel Tank Fill-Up Cost Calculator */}
-        <div className="w-full">
+        <section id="tank-fill-calculator" className="w-full scroll-mt-24">
           <TankFillCalculator
             petrolPrice={petrolPrice}
             dieselPrice={dieselPrice}
             hiOctanePrice={hiOctanePrice}
           />
-        </div>
+        </section>
 
         {/* Tool 2: Distance & Mileage Journey Calculator */}
-        <div className="w-full">
+        <section id="trip-cost-calculator" className="w-full scroll-mt-24">
           <FuelCalculator
             initialPetrolPrice={petrolPrice}
             initialDieselPrice={dieselPrice}
             initialHiOctanePrice={hiOctanePrice}
           />
-        </div>
+        </section>
       </div>
 
       {/* Route Distances Guide */}
