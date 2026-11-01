@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>Forms</title></head>
+  <body>
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="subject" value="New contact message from %{siteName}" />
+      <input name="bot-field" />
+      <input name="name" type="text" />
+      <input name="email" type="email" />
+      <select name="topic">
+        <option>General Inquiry / Question</option>
+        <option>Feature Suggestion &amp; Feedback</option>
+        <option>Business / Advertising Inquiry</option>
+        <option>Press &amp; Media Relations</option>
+        <option>Data Verification Notice</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>
