@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Pak Petrol Price',
@@ -23,20 +22,6 @@ export default function ContactPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-          <span className="text-xs font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block mb-1">Direct Support</span>
-          <a href="mailto:contact@pakpetrolprice.pk" className="text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-600">
-            contact@pakpetrolprice.pk
-          </a>
-        </div>
-        <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-          <span className="text-xs font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block mb-1">Response Time</span>
-          <span className="text-sm font-bold text-slate-900 dark:text-white">
-            Typically within 24 hours
-          </span>
-        </div>
-      </div>
 
       <form className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-5 transition-colors">
         <div>
