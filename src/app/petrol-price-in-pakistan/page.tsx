@@ -50,62 +50,75 @@ export default async function PetrolPage() {
         <PriceCard product={petrol} record={currentPrice} featured={true} />
       </div>
 
-      {/* 2-Column Responsive Dashboard Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-        {/* Left Column (8 cols): Trend Chart, History, Calculator, FAQs */}
-        <div className="lg:col-span-8 space-y-6 sm:space-y-8 min-w-0">
-          {/* Rate Trend Chart */}
-          <section className="space-y-3">
-            <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
-              Petrol Price Trend (2026)
-            </h2>
-            <PriceChart records={petrolHistory} productName="Petrol" />
-          </section>
+      {/* Official OGRA Source Verification Bar */}
+      <OgraStatusWidget products={products} latestPrices={latestPrices} />
 
-          {/* Historical revisions */}
-          <section className="space-y-3">
-            <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
-              Recent Petrol Price Revisions
-            </h2>
-            <HistoricalTable records={petrolHistory} />
-          </section>
+      {/* ZONE 2: Rate Trend Chart (Full Width) */}
+      <section className="space-y-4">
+        <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide uppercase mb-1">
+            <span>📈 Official Trend Analysis</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
+            Petrol Price Trend (2026)
+          </h2>
+        </div>
+        <div className="w-full bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-4 sm:p-7 shadow-sm">
+          <PriceChart records={petrolHistory} productName="Petrol" />
+        </div>
+      </section>
 
-          {/* Calculator for petrol trips */}
-          <section className="space-y-3">
-            <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
-              Calculate Your Journey Petrol Cost
-            </h2>
-            <FuelCalculator
-              initialPetrolPrice={petrolRate}
-              initialDieselPrice={dieselRate}
-              initialHiOctanePrice={hiOctaneRate}
-            />
-          </section>
+      {/* ZONE 3: Historical Revisions Table (Full Width) */}
+      <section className="space-y-4">
+        <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide uppercase mb-1">
+            <span>📋 Government Notifications</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
+            Recent Petrol Price Revisions
+          </h2>
+        </div>
+        <div className="w-full">
+          <HistoricalTable records={petrolHistory} />
+        </div>
+      </section>
 
-          {/* FAQs with SEO Schema */}
-          <FAQSection
-            faqs={petrolFaqs}
-            title="Petrol Pricing FAQs (Pakistan)"
-            description="Detailed answers on how petrol is taxed, petroleum levy rates, and fortnightly revisions by OGRA."
-          />
+      {/* ZONE 4: Dedicated Calculators Suite (Balanced 2-Column Space) */}
+      <section className="space-y-6">
+        <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide uppercase mb-1">
+            <span>⚡ Interactive Budget Tools</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
+            Petrol Cost Calculators
+          </h2>
         </div>
 
-        {/* Right Column (4 cols, sticky): Tank Fill, OGRA Status */}
-        <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-20">
-          {/* Tank Fill Calculator */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
           <TankFillCalculator
-            compact={true}
+            compact={false}
             petrolPrice={petrolRate}
             dieselPrice={dieselRate}
             hiOctanePrice={hiOctaneRate}
           />
+          <FuelCalculator
+            initialPetrolPrice={petrolRate}
+            initialDieselPrice={dieselRate}
+            initialHiOctanePrice={hiOctaneRate}
+          />
+        </div>
+      </section>
 
-          {/* OGRA Verification Status */}
-          <OgraStatusWidget products={products} latestPrices={latestPrices} />
+      {/* ZONE 5: Full-Width FAQs */}
+      <section className="w-full">
+        <FAQSection
+          faqs={petrolFaqs}
+          title="Petrol Pricing FAQs (Pakistan)"
+          description="Detailed answers on how petrol is taxed, petroleum levy rates, and fortnightly revisions by OGRA."
+        />
+      </section>
 
-          <AdPlacement slotId="petrol-page-sidebar" format="rectangle" />
-        </aside>
-      </div>
+      <AdPlacement slotId="petrol-page-bottom" format="leaderboard" />
     </div>
   );
 }

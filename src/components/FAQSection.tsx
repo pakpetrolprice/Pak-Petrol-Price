@@ -35,41 +35,43 @@ export function FAQSection({
   };
 
   return (
-    <section aria-label="Frequently Asked Questions" className="my-8">
+    <section aria-label="Frequently Asked Questions" className="w-full my-8 sm:my-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm transition-colors">
-        <div className="max-w-3xl mb-6">
+      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm transition-colors w-full">
+        {/* Section Header */}
+        <div className="max-w-3xl mb-8">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide uppercase mb-2">
             <span>❓ Official Answers &amp; Guidance</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white tracking-tight">
             {title}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
             {displaySubtitle}
           </p>
         </div>
 
-        <div className="divide-y divide-slate-100 dark:divide-slate-800">
+        {/* Full-Width 2-Column Balanced Desktop Accordion Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
           {faqs.map((faq, idx) => (
             <details
               key={idx}
               open={idx === 0}
-              className="group py-4 transition-all cursor-pointer"
+              className="group p-5 sm:p-6 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/80 hover:border-emerald-500/60 dark:hover:border-emerald-500/60 transition-all cursor-pointer shadow-xs"
             >
-              <summary className="flex justify-between items-center text-sm sm:text-base font-bold text-slate-950 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 select-none list-none pr-2">
+              <summary className="flex justify-between items-start gap-4 text-sm sm:text-base font-bold text-slate-950 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 select-none list-none pr-1">
                 <span className="leading-snug">{faq.question}</span>
-                <span className="ml-3 flex-shrink-0 w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-950 group-open:rotate-180 transition-all border border-slate-200 dark:border-slate-700">
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <span className="shrink-0 w-7 h-7 rounded-lg bg-white dark:bg-slate-700/80 flex items-center justify-center text-slate-600 dark:text-slate-300 group-open:rotate-180 transition-transform shadow-xs border border-slate-200/60 dark:border-slate-600/60">
+                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
                     <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                   </svg>
                 </span>
               </summary>
-              <div className="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl pr-4 font-normal">
+              <div className="mt-3.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal pt-3 border-t border-slate-200/70 dark:border-slate-700/70">
                 <p>{faq.answer}</p>
               </div>
             </details>

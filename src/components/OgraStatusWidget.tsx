@@ -20,81 +20,64 @@ export function OgraStatusWidget({ products, latestPrices }: OgraStatusWidgetPro
     : 'Active Today';
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm space-y-4 w-full">
-      {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-          <h3 className="font-black text-sm text-slate-900 dark:text-white uppercase tracking-wider">
-            OGRA Source Verification
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm w-full space-y-4">
+      {/* Verification Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex items-center gap-2.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+          <h3 className="font-black text-sm sm:text-base text-slate-950 dark:text-white uppercase tracking-wider">
+            OGRA Official Source Verification
           </h3>
         </div>
-        <span className="px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 font-bold text-[10px] uppercase">
-          Live &amp; Verified
-        </span>
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          <span className="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 font-bold text-xs uppercase tracking-wide">
+            ● Live &amp; Government Verified
+          </span>
+        </div>
       </div>
 
-      {/* Meta Details */}
-      <div className="space-y-2.5 text-xs">
-        <div className="flex justify-between items-center">
-          <span className="text-slate-500 dark:text-slate-400 font-medium">Regulatory Authority:</span>
-          <span className="font-bold text-slate-900 dark:text-white">OGRA &amp; Ministry of Energy</span>
+      {/* Horizontal Metadata Metrics Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-xs">
+        <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+          <span className="block text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider text-[11px]">
+            Regulatory Authority
+          </span>
+          <span className="block font-black text-slate-950 dark:text-white text-sm">
+            OGRA &amp; Ministry of Energy
+          </span>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-slate-500 dark:text-slate-400 font-medium">Latest Notification:</span>
-          <span className="font-mono font-bold text-emerald-700 dark:text-emerald-400">
+
+        <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+          <span className="block text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider text-[11px]">
+            Latest Circular Code
+          </span>
+          <span className="block font-mono font-bold text-emerald-700 dark:text-emerald-400 text-sm truncate">
             {petrolRecord?.notificationIdentifier || 'OGRA-REVISION-2026-10-24'}
           </span>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-slate-500 dark:text-slate-400 font-medium">Effective Date:</span>
-          <span className="font-bold text-slate-900 dark:text-white">
+
+        <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+          <span className="block text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider text-[11px]">
+            Effective Fortnight
+          </span>
+          <span className="block font-black text-slate-950 dark:text-white text-sm">
             October 24, 2026 (Active)
           </span>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-slate-500 dark:text-slate-400 font-medium">Last Engine Sync:</span>
-          <span className="font-bold text-slate-700 dark:text-slate-300">
-            {formattedVerifiedDate}
+
+        <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1 flex flex-col justify-between">
+          <span className="block text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider text-[11px]">
+            Official Government Portal
           </span>
-        </div>
-        <div className="flex justify-between items-center">
-          <span className="text-slate-500 dark:text-slate-400 font-medium">Official Portal Link:</span>
           <a
             href="https://price.ogra.org.pk/?category=notified-petroleum-prices&section=oil-notified"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-emerald-700 dark:text-emerald-400 hover:underline font-bold"
+            className="inline-flex items-center gap-1 font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-950 dark:hover:text-emerald-200 text-sm"
           >
-            price.ogra.org.pk ↗
+            <span>price.ogra.org.pk</span>
+            <span>↗</span>
           </a>
-        </div>
-      </div>
-
-      {/* Quick Summary Grid */}
-      <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
-        <span className="block text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-          Current Regulated Products
-        </span>
-        <div className="grid grid-cols-2 gap-2">
-          {products.map(p => {
-            const rec = latestPrices[p.id];
-            const price = rec?.pricePkr ?? 0;
-            return (
-              <Link
-                key={p.id}
-                href={`/${p.slug}`}
-                className="p-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 hover:border-emerald-500 transition group"
-              >
-                <span className="block text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 truncate">
-                  {p.displayName}
-                </span>
-                <span className="block font-mono font-black text-xs text-slate-950 dark:text-white mt-0.5">
-                  Rs. {price.toFixed(2)}
-                </span>
-              </Link>
-            );
-          })}
         </div>
       </div>
     </div>
