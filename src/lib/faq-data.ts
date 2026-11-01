@@ -1,49 +1,74 @@
 import { FAQItem } from '@/components/FAQSection';
 
+/**
+ * High-Volume Google Search Query & "People Also Ask" (PAA) FAQs for Pakistan
+ * Optimized for Featured Snippets, Voice Search, and Schema.org FAQPage structured data.
+ */
+
 export const HOME_FAQS: FAQItem[] = [
   {
-    question: 'How often are petrol and diesel prices revised in Pakistan?',
+    question: 'What is the petrol price in Pakistan today?',
     answer:
-      'In Pakistan, petroleum products are officially revised on a fortnightly schedule by the Oil & Gas Regulatory Authority (OGRA) and the Ministry of Energy (Petroleum Division). Official notifications are announced on the 15th/16th and the last day of each month, taking legal effect at 12:00 AM midnight.',
+      'The current official price of Super Petrol (92 RON) in Pakistan is officially notified by the Oil & Gas Regulatory Authority (OGRA) and the Ministry of Energy. Check the live rate card at the top of this page for the exact, active rate per litre verified against official government gazettes.',
   },
   {
-    question: 'Why are petrol prices uniform across all cities in Pakistan?',
+    question: 'When is the next petrol price announcement in Pakistan?',
     answer:
-      'Under the Inland Freight Equalization Margin (IFEM) mechanism regulated by OGRA, transport freight costs across depots and refineries are pooled. This equalizes consumer pump rates for Super Petrol and High-Speed Diesel so citizens in Karachi, Lahore, Islamabad, and Peshawar pay the exact same regulated ex-depot rate.',
+      'In Pakistan, petrol prices are reviewed on a fortnightly schedule (every 15 days). Official revisions are announced on the 15th/16th and the final day (30th or 31st) of every month, taking legal effect at 12:00 AM midnight across all fuel stations nationwide.',
   },
   {
-    question: 'Is Hi-Octane (RON 97) regulated by the government?',
+    question: 'Is petrol price the same in Karachi, Lahore, Islamabad, and Rawalpindi?',
     answer:
-      'No. Hi-Octane (RON 97) was deregulated by the federal government. Oil Marketing Companies (OMCs) like PSO and Shell determine and announce commercial retail rates independently based on import premiums and specific city locations.',
+      'Yes. Under OGRA’s Inland Freight Equalization Margin (IFEM) mechanism, transportation and freight costs across depots and refineries are equalized. Therefore, consumer pump rates for Super Petrol and High-Speed Diesel are identical across all designated stations in Karachi, Lahore, Islamabad, Rawalpindi, Peshawar, Multan, and Faisalabad.',
   },
   {
-    question: 'How does our automated crawler verify fuel rates?',
+    question: 'How much is the Petroleum Development Levy (PDL) and tax on petrol in Pakistan?',
     answer:
-      'Our autonomous system queries authorized regulatory sources including the OGRA official notified prices portal, Ministry of Energy official releases, and PSO retail circulars every midnight at 12:00 AM and every 6 hours to immediately detect, verify, and reflect confirmed adjustments.',
+      'Under current federal fiscal policy, the Government of Pakistan levies the Petroleum Development Levy (PDL) per litre on Super Petrol and High-Speed Diesel. General Sales Tax (GST) on petrol is currently set at 0%. Retail prices also account for ex-refinery costs, IFEM freight margins, OMC distribution margins, and dealer commissions.',
   },
   {
-    question: 'What taxes are currently included in Pakistan petrol prices?',
+    question: 'What is the difference between Super Petrol (92 RON) and Hi-Octane (97 RON)?',
     answer:
-      'Retail consumer prices include the base ex-refinery cost, Inland Freight Equalization Margin (IFEM), Oil Marketing Company (OMC) margin, dealers commission, and the Petroleum Development Levy (PDL). Sales tax on motor gasoline currently stands at 0%.',
+      'Regular Super Petrol has an octane rating of 92 RON and is price-regulated by the federal government for standard passenger cars and motorcycles. Hi-Octane (RON 97) is deregulated, providing higher knock resistance for luxury, turbocharged, and high-compression engines. Hi-Octane retail rates are set independently by oil companies such as PSO, Shell, and Total.',
+  },
+  {
+    question: 'Who decides petrol prices in Pakistan — OGRA or the Ministry of Finance?',
+    answer:
+      'OGRA (Oil & Gas Regulatory Authority) calculates and recommends fortnightly price adjustments based on international crude oil benchmarks (Arabian Light / Brent), Platt’s index, and the USD/PKR exchange rate. The Prime Minister and the Ministry of Finance / Petroleum Division review and grant final approval before issuance.',
+  },
+  {
+    question: 'What was the highest petrol price recorded in Pakistan history?',
+    answer:
+      'The highest historical petrol price in Pakistan crossed Rs. 330 to Rs. 380+ per litre following severe global energy shocks, currency devaluation, and fiscal reforms agreed with international lending institutions.',
   },
 ];
 
 export function getPetrolPageFaqs(currentPrice?: number): FAQItem[] {
   const formattedPrice = currentPrice ? `Rs. ${currentPrice.toFixed(2)}` : 'Rs. 379.25';
+  const price = currentPrice || 379.25;
+
   return [
     {
-      question: 'What is the current official price of Petrol in Pakistan today?',
-      answer: `The current notified rate for Petrol (Super / Motor Spirit 92 RON) is officially published at ${formattedPrice} per litre as notified under government circulars by OGRA and the Ministry of Energy.`,
+      question: 'What is the price of 1 litre of Petrol in Pakistan today?',
+      answer: `Today, 1 litre of Super Petrol (92 RON) in Pakistan is officially notified at ${formattedPrice} under verified circulars issued by OGRA and the Ministry of Energy.`,
     },
     {
-      question: 'What vehicle types use Petrol in Pakistan?',
-      answer:
-        'Petrol powers the vast majority of personal passenger cars (Suzuki Alto, Cultus, Toyota Corolla, Honda Civic), motorbikes (Honda CD 70, CG 125), and light urban commercial transport across Pakistan.',
+      question: 'How many litres of petrol can I get in Rs. 1,000, Rs. 2,000, or Rs. 5,000?',
+      answer: `At the current rate of ${formattedPrice} per litre: Rs. 1,000 gets approx ${(1000 / price).toFixed(2)} litres; Rs. 2,000 gets approx ${(2000 / price).toFixed(2)} litres; and Rs. 5,000 gives you approx ${(5000 / price).toFixed(2)} litres of Super Petrol.`,
     },
     {
-      question: 'How can I calculate my journey petrol cost?',
+      question: 'How much does it cost to fill a motorcycle or car petrol tank in Pakistan?',
+      answer: `At today's rate: A standard Honda CD 70 with a 9-litre tank costs approx Rs. ${Math.round(9 * price).toLocaleString('en-PK')} to fill empty-to-full. A Suzuki Alto (660cc, 27-litre tank) costs approx Rs. ${Math.round(27 * price).toLocaleString('en-PK')}. A 50-litre sedan (Toyota Corolla or Honda Civic) costs approx Rs. ${Math.round(50 * price).toLocaleString('en-PK')} for a 100% full tank.`,
+    },
+    {
+      question: 'Can I mix Hi-Octane with regular Super Petrol in my car in Pakistan?',
       answer:
-        'Use our interactive Fuel & Trip Cost Calculator. Select your vehicle preset (e.g. Alto 660cc, Corolla GLi, or Honda CD 70), enter the distance in kilometres, and get instant calculations for required litres, cost per KM, and total rupees required.',
+        'Yes. Mixing 92 RON Super Petrol with 97 RON Hi-Octane is safe and widely practiced by Pakistani car owners to obtain a cost-effective 94–95 RON blend, improving engine responsiveness, eliminating engine knocking, and maintaining fuel injectors.',
+    },
+    {
+      question: 'Why do petrol prices increase when the US Dollar appreciates against the Pakistani Rupee?',
+      answer:
+        'Because Pakistan imports over 70% of its petroleum products and crude oil in US Dollars, any depreciation of the Pakistani Rupee (PKR) automatically raises the landed import cost in local currency, even when international oil barrel prices remain stable.',
     },
   ];
 }
@@ -52,66 +77,87 @@ export const PETROL_PAGE_FAQS: FAQItem[] = getPetrolPageFaqs(379.25);
 
 export function getDieselPageFaqs(currentPrice?: number): FAQItem[] {
   const formattedPrice = currentPrice ? `Rs. ${currentPrice.toFixed(2)}` : 'Rs. 395.82';
+
   return [
     {
-      question: 'What is the current official price of Diesel in Pakistan today?',
-      answer: `The current notified rate for High-Speed Diesel is officially published at ${formattedPrice} per litre as notified under government circulars by OGRA and the Ministry of Energy.`,
+      question: 'What is the High-Speed Diesel (HSD) price in Pakistan today?',
+      answer: `The current official notified price of High-Speed Diesel (HSD) in Pakistan is ${formattedPrice} per litre as approved by the federal government and OGRA.`,
     },
     {
-      question: 'What is Diesel used for in Pakistan?',
+      question: 'Why is diesel often more expensive than petrol in Pakistan?',
       answer:
-        'Diesel is the backbone of Pakistan’s transport economy, powering heavy freight trucks, intercity passenger buses, agricultural tractors, tube-wells, and diesel 4x4 vehicles such as Toyota Hilux Revo and Fortuner.',
+        'Diesel prices frequently exceed petrol prices due to higher international refining processing margins, robust global industrial demand, and Pakistan’s substantial dependence on imported finished diesel products for commercial transit and farming.',
     },
     {
-      question: 'Why does a diesel price increase affect general inflation in Pakistan?',
+      question: 'Which vehicles and machinery use High-Speed Diesel in Pakistan?',
       answer:
-        'Because all commercial goods, agricultural produce, and raw materials are transported across the country using diesel freight trucks, any change in diesel directly impacts food prices and consumer inflation rates.',
+        'Diesel is the lifeline of Pakistan’s transport infrastructure, powering intercity freight trailers, Bedford and Hino cargo trucks, Daewoo/Faisal Movers passenger buses, agricultural tube-wells and tractors, and commercial 4x4s such as Toyota Hilux Revo and Fortuner Diesel.',
+    },
+    {
+      question: 'Why does a diesel price increase immediately trigger inflation in Pakistan?',
+      answer:
+        'Almost all agricultural produce (wheat, rice, vegetables, milk) and manufactured commodities are transported from farms and ports via diesel trucks. When diesel rates rise, transporters increase freight charges, leading to higher food and consumer prices across Pakistani bazaars within 24 to 48 hours.',
     },
   ];
 }
 
 export const DIESEL_PAGE_FAQS: FAQItem[] = getDieselPageFaqs(395.82);
 
-export const HISTORY_PAGE_FAQS: FAQItem[] = [
+export const CALCULATOR_PAGE_FAQS: FAQItem[] = [
   {
-    question: 'Where is the historical pricing data sourced from?',
+    question: 'How do I calculate fuel cost per kilometer (KM) for my vehicle?',
     answer:
-      'Every historical entry in our database is compiled from official gazette notifications and circulars issued by OGRA and the Finance Division spanning from January 2026 to the present.',
+      'To calculate cost per KM: divide the current fuel price per litre by your vehicle’s mileage (km per litre). For instance, if petrol is Rs. 380/litre and your car delivers 14 km/L, your cost per kilometer is approximately Rs. 27.14 per KM (380 ÷ 14).',
   },
   {
-    question: 'Why did fuel prices fluctuate sharply during 2026?',
+    question: 'What is the average petrol mileage of Suzuki Alto, Corolla, Civic, and CD 70 in Pakistan?',
     answer:
-      'In early 2026, severe Middle East regional shipping choke points and international crude shocks led to temporary price spikes, reaching historical highs in April 2026 before cooling down through government levy adjustments.',
+      'Real-world city driving averages in mixed Pakistani traffic with AC: Suzuki Alto 660cc (17–19 km/L), Suzuki Cultus / Wagon R (15–16 km/L), Toyota Corolla (11–13 km/L), Honda Civic (10–12 km/L), KIA Sportage (9–10 km/L), and Honda CD 70 motorcycle (50–55 km/L).',
+  },
+  {
+    question: 'How much petrol is needed for travel from Lahore to Islamabad via M-2 Motorway?',
+    answer:
+      'The distance from Lahore to Islamabad via the M-2 Motorway is approximately 375 KM. A standard 1.3L–1.6L car delivering 14 km/L on highway cruise requires approximately 26.8 litres of petrol (approx Rs. 10,100 to Rs. 10,500 one-way at current rates).',
+  },
+  {
+    question: 'How much fuel is required from Karachi to Hyderabad via M-9 Motorway?',
+    answer:
+      'The Karachi to Hyderabad distance via the M-9 Motorway is roughly 165 KM. A compact car averaging 15 km/L consumes approximately 11 litres of fuel (approx Rs. 4,100 to Rs. 4,300 one-way).',
+  },
+  {
+    question: 'Does turning on the car air conditioner (AC) consume more petrol in Pakistan?',
+    answer:
+      'Yes. In hot Pakistani summers, running the vehicle AC increases engine load and elevates fuel consumption by 10% to 20%, reducing city fuel economy by approximately 1.5 to 3 km per litre in stop-and-go traffic.',
   },
 ];
 
-export const CALCULATOR_PAGE_FAQS: FAQItem[] = [
+export const HISTORY_PAGE_FAQS: FAQItem[] = [
   {
-    question: 'How accurate is the vehicle mileage estimate in the calculator?',
+    question: 'Where can I find official past petrol prices in Pakistan for audit and expense reimbursement?',
     answer:
-      'Our calculator uses real-world reported averages from Pakistani motorists (accounting for city traffic, road conditions, and summer AC usage) rather than inflated manufacturer brochure claims.',
+      'Our historical price archive records every verified fortnightly price adjustment dating back from 2024 to 2026, complete with effective dates, paisa change values, and official regulatory gazette notification identifiers.',
   },
   {
-    question: 'Can I calculate two-way journey costs?',
+    question: 'Why did Pakistan switch to a 15-day (fortnightly) fuel price revision cycle?',
     answer:
-      'Yes! Simply check the "Return trip (double the distance)" option to automatically double the mileage and total fuel budget for round trips.',
+      'The Government of Pakistan adopted a 15-day revision cycle to prevent severe financial buildup on oil marketing companies and pass international crude price fluctuations and exchange rate shifts gradually to consumers rather than in large monthly shocks.',
+  },
+  {
+    question: 'How can I verify if a past petrol price on this website is authentic?',
+    answer:
+      'Every historical entry in our audit log corresponds to an official circular issued by the Oil & Gas Regulatory Authority (OGRA) or Ministry of Energy, accessible via the official regulatory source link provided in the table.',
   },
 ];
 
 export const CITY_PAGE_FAQS: FAQItem[] = [
   {
-    question: 'Why is petrol priced the same in Karachi, Lahore, and Islamabad?',
+    question: 'Why are petrol rates the same in Karachi, Lahore, and Islamabad?',
     answer:
-      'Under OGRA’s Inland Freight Equalization Margin (IFEM), inter-city transport costs are averaged and pooled across Pakistan, meaning ex-depot consumer prices for regulated petrol and diesel remain identical across designated pumps nationwide.',
+      'Under the Inland Freight Equalization Margin (IFEM) supervised by OGRA, intercity transportation expenses from port refineries to inland storage depots are pooled, ensuring uniform ex-depot consumer prices across designated filling stations nationwide.',
   },
   {
-    question: 'Does any fuel price differ between cities in Pakistan?',
+    question: 'Do any fuel prices differ by city in Pakistan?',
     answer:
-      'Yes. Deregulated products such as Hi-Octane (RON 97) and CNG may carry regional variations set independently by oil marketing companies based on local depot transport logistics.',
-  },
-  {
-    question: 'Are remote areas charged extra freight?',
-    answer:
-      'Retail petrol pumps within designated IFEM supply zones charge the uniform notified rates. In very remote mountainous areas located beyond designated storage depots, slight provincial cartage margins may apply as approved by local administration.',
+      'Yes. Deregulated fuels such as Hi-Octane (RON 97) and CNG may carry regional price variations based on private oil marketing company supply chain costs and local station overheads.',
   },
 ];
