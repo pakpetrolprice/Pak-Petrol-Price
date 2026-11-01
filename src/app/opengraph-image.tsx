@@ -44,10 +44,10 @@ export default async function Image() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: '36px', fontWeight: 900, letterSpacing: '-0.5px' }}>
-              Petrol Price Pakistan
+              Pak Petrol Price
             </span>
             <span style={{ fontSize: '18px', fontWeight: 700, color: '#34d399', textTransform: 'uppercase' }}>
-              Official Consumer Rates
+              pakpetrolprice.pk · Official Rates
             </span>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default async function Image() {
             color: '#94a3b8',
           }}
         >
-          <span>petrolpricepakistan.pk</span>
+          <span>pakpetrolprice.pk</span>
           <span>Zero-Tolerance for Unverified Rumors</span>
         </div>
       </div>

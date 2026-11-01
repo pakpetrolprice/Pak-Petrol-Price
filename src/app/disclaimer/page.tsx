@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Official Disclaimer | Petrol Price Pakistan',
-  description: 'Legal disclaimer and data calculation limitations for Petrol Price Pakistan.',
+  title: 'Official Disclaimer | Pak Petrol Price',
+  description: 'Legal disclaimer and data calculation limitations for Pak Petrol Price (pakpetrolprice.pk).',
 };
 
 export default function DisclaimerPage() {
@@ -15,13 +15,13 @@ export default function DisclaimerPage() {
           Legal Disclaimer
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-          Statutory information and data calculation notices.
+          Statutory information and data calculation notices for pakpetrolprice.pk.
         </p>
       </div>
 
       <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed transition-colors">
         <p>
-          <strong className="text-slate-900 dark:text-white">Petrol Price Pakistan</strong> is an independent informational service. We are not an official arm of the Government of Pakistan, OGRA, or any Oil Marketing Company.
+          <strong className="text-slate-900 dark:text-white">Pak Petrol Price</strong> is an independent informational service. We are not an official arm of the Government of Pakistan, OGRA, or any Oil Marketing Company.
         </p>
         <p>
           While we exercise extreme care to reflect official gazette notifications accurately, users and commercial entities must always refer to official gazette notices published by the Finance Division and OGRA for statutory compliance.

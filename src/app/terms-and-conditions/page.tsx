@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions | Petrol Price Pakistan',
+  title: 'Terms and Conditions | Pak Petrol Price',
   description:
-    'Terms and Conditions for using Petrol Price Pakistan. Review user responsibilities, intellectual property, disclaimers, and terms of service.',
+    'Terms and Conditions for using Pak Petrol Price (pakpetrolprice.pk). Review user responsibilities, intellectual property, disclaimers, and terms of service.',
 };
 
 export default function TermsAndConditionsPage() {
@@ -25,7 +25,7 @@ export default function TermsAndConditionsPage() {
             1. Agreement to Terms
           </h2>
           <p>
-            By accessing or using <strong className="text-slate-900 dark:text-white">Petrol Price Pakistan</strong> (the &quot;Website&quot;), you agree to be bound by these Terms and Conditions and our Privacy Policy. If you do not agree with any part of these terms, please refrain from using the Website.
+            By accessing or using <strong className="text-slate-900 dark:text-white">Pak Petrol Price</strong> (accessible at pakpetrolprice.pk), you agree to be bound by these Terms and Conditions and our Privacy Policy. If you do not agree with any part of these terms, please refrain from using the Website.
           </p>
         </section>
 
@@ -55,7 +55,7 @@ export default function TermsAndConditionsPage() {
             4. Intellectual Property
           </h2>
           <p>
-            The software, visual design, custom calculator algorithms, layout, and aggregated content on this Website are the property of Petrol Price Pakistan and are protected by applicable intellectual property laws. You may view, reference, and share our data for personal, non-commercial use provided proper attribution is maintained.
+            The software, visual design, custom calculator algorithms, layout, and aggregated content on this Website are the property of Pak Petrol Price and are protected by applicable intellectual property laws. You may view, reference, and share our data for personal, non-commercial use provided proper attribution is maintained.
           </p>
         </section>
 

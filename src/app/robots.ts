@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       },
     ],
-    sitemap: 'https://petrolpricepakistan.pk/sitemap.xml',
-    host: 'https://petrolpricepakistan.pk',
+    sitemap: 'https://pakpetrolprice.pk/sitemap.xml',
+    host: 'https://pakpetrolprice.pk',
   };
 }

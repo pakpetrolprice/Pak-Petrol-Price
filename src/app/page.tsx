@@ -29,11 +29,11 @@ export default async function HomePage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Petrol Price Today in Pakistan',
-    url: 'https://petrolpricepakistan.pk',
+    name: 'Pak Petrol Price',
+    url: 'https://pakpetrolprice.pk',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://petrolpricepakistan.pk/?q={search_term_string}',
+      target: 'https://pakpetrolprice.pk/?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
     hasPart: [

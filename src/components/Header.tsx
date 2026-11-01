@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { BrandLogo } from '@/components/BrandLogo';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -47,20 +48,8 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14">
           {/* Logo brand */}
-          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0 min-w-0">
-            <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group min-w-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-white font-black text-base sm:text-lg shadow-sm group-hover:scale-105 transition-all shrink-0">
-                <span>PK</span>
-              </div>
-              <div className="flex flex-col min-w-0">
-                <span className="font-black text-base sm:text-xl text-slate-950 dark:text-white tracking-tight leading-tight group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors truncate">
-                  Petrol Price Pakistan
-                </span>
-                <span className="text-[9px] sm:text-[10px] font-black text-emerald-700 dark:text-emerald-400 tracking-wider uppercase leading-none">
-                  Official Consumer Rates
-                </span>
-              </div>
-            </Link>
+          <div className="flex items-center shrink-0 min-w-0">
+            <BrandLogo size="md" showDomain={true} />
           </div>
 
           {/* Desktop Nav Links with ACTIVE page highlight */}

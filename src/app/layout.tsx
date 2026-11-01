@@ -23,15 +23,17 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://petrolpricepakistan.pk'),
+  metadataBase: new URL('https://pakpetrolprice.pk'),
   title: {
-    default: 'Petrol Price Today in Pakistan | Official Verified Fuel Rates (OGRA)',
-    template: '%s | Petrol Price Pakistan',
+    default: 'Pak Petrol Price | Today Fuel Rates in Pakistan (OGRA Verified)',
+    template: '%s | Pak Petrol Price',
   },
   description:
-    'Check today petrol price and diesel price in Pakistan. Officially verified rates from OGRA circulars and Ministry of Energy notifications with live calculator and history.',
+    'Check today petrol price and diesel price in Pakistan at pakpetrolprice.pk. Officially verified rates from OGRA circulars and Ministry of Energy notifications with live calculator and history.',
   keywords: [
+    'pak petrol price',
     'petrol price today pakistan',
+    'pakpetrolprice.pk',
     'petrol rate in pakistan',
     'diesel price today',
     'ogra petroleum prices',
@@ -41,9 +43,9 @@ export const metadata: Metadata = {
     'lpg price pakistan',
     'petrol calculator pakistan',
   ],
-  authors: [{ name: 'Petrol Price Pakistan Research Team', url: 'https://petrolpricepakistan.pk/about' }],
-  creator: 'Petrol Price Pakistan',
-  publisher: 'Petrol Price Pakistan',
+  authors: [{ name: 'Pak Petrol Price Research Team', url: 'https://pakpetrolprice.pk/about' }],
+  creator: 'Pak Petrol Price',
+  publisher: 'Pak Petrol Price',
   alternates: {
     canonical: './',
   },
@@ -59,11 +61,11 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Petrol Price Today in Pakistan | Official OGRA Rates',
+    title: 'Pak Petrol Price | Official OGRA Verified Rates in Pakistan',
     description:
-      'Verified petrol, diesel and hi-octane rates in Pakistan with historical changes and fuel cost calculator.',
-    url: 'https://petrolpricepakistan.pk',
-    siteName: 'Petrol Price Pakistan',
+      'Verified petrol, diesel and hi-octane rates in Pakistan with historical changes and fuel cost calculator on pakpetrolprice.pk.',
+    url: 'https://pakpetrolprice.pk',
+    siteName: 'Pak Petrol Price',
     locale: 'en_PK',
     type: 'website',
     images: [
@@ -71,19 +73,19 @@ export const metadata: Metadata = {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Petrol Price Today in Pakistan - Official OGRA Verified Rates',
+        alt: 'Pak Petrol Price - Official OGRA Verified Rates in Pakistan',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Petrol Price Today in Pakistan | Official OGRA Rates',
+    title: 'Pak Petrol Price | Official OGRA Rates in Pakistan',
     description:
-      'Official verified petroleum prices, diesel rates, and fuel cost calculators in Pakistan.',
+      'Official verified petroleum prices, diesel rates, and fuel cost calculators in Pakistan on pakpetrolprice.pk.',
     images: ['/opengraph-image'],
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'petrolpricepakistan-verification',
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'pakpetrolprice-verification',
   },
 };
 
@@ -92,11 +94,11 @@ const jsonLdGlobal = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://petrolpricepakistan.pk/#organization',
-      name: 'Petrol Price Pakistan',
-      url: 'https://petrolpricepakistan.pk',
-      logo: 'https://petrolpricepakistan.pk/opengraph-image',
-      description: 'Official verified petroleum prices, diesel rates, and fuel cost calculators in Pakistan.',
+      '@id': 'https://pakpetrolprice.pk/#organization',
+      name: 'Pak Petrol Price',
+      url: 'https://pakpetrolprice.pk',
+      logo: 'https://pakpetrolprice.pk/opengraph-image',
+      description: 'Official verified petroleum prices, diesel rates, and fuel cost calculators in Pakistan on pakpetrolprice.pk.',
       sameAs: [
         'https://price.ogra.org.pk',
         'https://www.petroleum.gov.pk',
@@ -104,11 +106,11 @@ const jsonLdGlobal = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://petrolpricepakistan.pk/#website',
-      url: 'https://petrolpricepakistan.pk',
-      name: 'Petrol Price Pakistan',
+      '@id': 'https://pakpetrolprice.pk/#website',
+      url: 'https://pakpetrolprice.pk',
+      name: 'Pak Petrol Price',
       publisher: {
-        '@id': 'https://petrolpricepakistan.pk/#organization',
+        '@id': 'https://pakpetrolprice.pk/#organization',
       },
     },
   ],

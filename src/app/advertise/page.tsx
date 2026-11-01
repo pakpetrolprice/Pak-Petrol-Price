@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Advertise With Us | Petrol Price Pakistan',
+  title: 'Advertise With Us | Pak Petrol Price',
   description:
-    'Explore advertising opportunities on Petrol Price Pakistan. Reach automotive, commuter, and business audiences across Pakistan.',
+    'Explore advertising opportunities on Pak Petrol Price (pakpetrolprice.pk). Reach automotive, commuter, and business audiences across Pakistan.',
 };
 
 export default function AdvertisePage() {
@@ -15,7 +15,7 @@ export default function AdvertisePage() {
           Advertise With Us
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-          Promote your brand, products, or services to an active audience of motorists and businesses in Pakistan.
+          Promote your brand, products, or services to an active audience of motorists and businesses in Pakistan on pakpetrolprice.pk.
         </p>
       </div>
 
@@ -23,10 +23,10 @@ export default function AdvertisePage() {
       <div className="bg-white dark:bg-slate-900 p-6 sm:p-10 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-6 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed transition-colors">
         <section className="space-y-2">
           <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-            Why Advertise on Petrol Price Pakistan?
+            Why Advertise on Pak Petrol Price?
           </h2>
           <p>
-            Petrol Price Pakistan provides daily fuel price updates, calculators, and historical charts to visitors across the country. Our audience includes vehicle owners, daily commuters, and transport operators checking fuel rates and calculating travel expenses.
+            Pak Petrol Price (pakpetrolprice.pk) provides daily fuel price updates, calculators, and historical charts to visitors across the country. Our audience includes vehicle owners, daily commuters, and transport operators checking fuel rates and calculating travel expenses.
           </p>
         </section>
 

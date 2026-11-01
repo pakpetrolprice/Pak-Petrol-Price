@@ -1,7 +1,7 @@
-# Petrol Price Pakistan — Comprehensive LLM & Search Index Documentation
+# Pak Petrol Price — Comprehensive LLM & Search Index Documentation
 
 ## Identity & Purpose
-Petrol Price Pakistan (petrolpricepakistan.pk) is the digital reference standard for officially notified petroleum prices in Pakistan. We provide zero-tolerance verification for government gazettes issued by the Oil & Gas Regulatory Authority (OGRA) and the Ministry of Energy (Petroleum Division).
+Pak Petrol Price (pakpetrolprice.pk) is the digital reference standard for officially notified petroleum prices in Pakistan. We provide zero-tolerance verification for government gazettes issued by the Oil & Gas Regulatory Authority (OGRA) and the Ministry of Energy (Petroleum Division).
 
 ## Source Authority Hierarchy
 1. Primary Official Source: Oil & Gas Regulatory Authority (OGRA) notified petroleum-price portal (price.ogra.org.pk).

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { BrandLogo } from '@/components/BrandLogo';
 
 export function Footer() {
   return (
@@ -8,14 +9,9 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-10 sm:mb-16">
           {/* Brand info */}
           <div className="sm:col-span-2 lg:col-span-1 space-y-4 sm:space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-white font-black text-xl sm:text-2xl shadow-md shrink-0">
-                PK
-              </div>
-              <span className="font-black text-white text-xl sm:text-2xl tracking-tight">Petrol Price Pakistan</span>
-            </div>
+            <BrandLogo size="lg" showDomain={true} />
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-              Pakistan&apos;s independent, authoritative consumer portal for verified OGRA notified fuel rates, high-speed diesel, and historical pricing revisions.
+              Pakistan&apos;s authoritative consumer portal for verified OGRA notified fuel rates, high-speed diesel, and historical pricing revisions.
             </p>
             <div className="text-xs sm:text-sm text-emerald-400 font-extrabold flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
@@ -127,7 +123,7 @@ export function Footer() {
             Official petroleum retail prices in Pakistan are regulated by the Oil &amp; Gas Regulatory Authority (OGRA) and the Ministry of Energy (Petroleum Division). We do not predict or fabricate government announcements. All historical and active records reflect officially notified circulars.
           </p>
           <p className="text-slate-500 font-semibold text-xs">
-            &copy; 2026 Petrol Price Pakistan. All rights reserved.
+            &copy; 2026 Pak Petrol Price (pakpetrolprice.pk). All rights reserved.
           </p>
         </div>
       </div>

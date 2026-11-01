@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'About Us & Mission | Petrol Price Pakistan',
+  title: 'About Us & Mission | Pak Petrol Price',
   description:
-    'Learn more about Petrol Price Pakistan: providing up-to-date fuel rates, historical price archives, and fuel calculators for motorists across Pakistan.',
+    'Learn more about Pak Petrol Price (pakpetrolprice.pk): providing verified fuel rates, historical price archives, and fuel calculators for motorists across Pakistan.',
 };
 
 export default function AboutPage() {
@@ -15,7 +15,7 @@ export default function AboutPage() {
           About Us &amp; Our Mission
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-          Providing simple, accessible, and transparent petroleum price information across Pakistan.
+          Providing simple, accessible, and transparent petroleum price information across Pakistan on pakpetrolprice.pk.
         </p>
       </div>
 
@@ -25,7 +25,7 @@ export default function AboutPage() {
             Who We Are
           </h2>
           <p>
-            <strong className="text-slate-900 dark:text-white">Petrol Price Pakistan</strong> is an independent digital information portal dedicated to tracking and publishing the latest petroleum product prices across Pakistan.
+            <strong className="text-slate-900 dark:text-white">Pak Petrol Price</strong> (pakpetrolprice.pk) is an independent digital information portal dedicated to tracking and publishing the latest petroleum product prices across Pakistan.
           </p>
           <p>
             We compile notified rates for Petrol (Motor Spirit), High-Speed Diesel (HSD), Hi-Octane (RON 97), Kerosene Oil (SKO), Light Diesel Oil (LDO), and Liquefied Petroleum Gas (LPG) sourced from regulatory circulars issued by the Oil and Gas Regulatory Authority (OGRA) and authorized Oil Marketing Companies.

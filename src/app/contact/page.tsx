@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Petrol Price Pakistan',
+  title: 'Contact Us | Pak Petrol Price',
   description:
-    'Get in touch with the Petrol Price Pakistan team for questions, feedback, media inquiries, or general support.',
+    'Get in touch with the Pak Petrol Price team for questions, feedback, media inquiries, or general support.',
 };
 
 export default function ContactPage() {
@@ -26,8 +26,8 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
           <span className="text-xs font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block mb-1">Direct Support</span>
-          <a href="mailto:contact@petrolpricepakistan.pk" className="text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-600">
-            contact@petrolpricepakistan.pk
+          <a href="mailto:contact@pakpetrolprice.pk" className="text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-600">
+            contact@pakpetrolprice.pk
           </a>
         </div>
         <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
@@ -48,7 +48,7 @@ export default function ContactPage() {
             type="text"
             required
             className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-hidden focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition"
-            placeholder="Muhammad Ali"
+            placeholder="Enter your name"
           />
         </div>
 
@@ -61,7 +61,7 @@ export default function ContactPage() {
             type="email"
             required
             className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-hidden focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition"
-            placeholder="ali@example.com"
+            placeholder="your.email@gmail.com"
           />
         </div>
 

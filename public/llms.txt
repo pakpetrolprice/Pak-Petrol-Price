@@ -1,9 +1,9 @@
-# Petrol Price Pakistan
+# Pak Petrol Price
 
 > Authoritative, independent consumer portal providing officially verified petroleum prices, historical gazette archives, and vehicle fuel calculators for Pakistan.
 
 ## Overview
-Petrol Price Pakistan consumes and cross-verifies fuel rates directly from official government circulars released by the Oil & Gas Regulatory Authority (OGRA) and the Federal Ministry of Energy (Petroleum Division). We eliminate rumors and sensationalized rate projections with timestamped mathematical accuracy.
+Pak Petrol Price consumes and cross-verifies fuel rates directly from official government circulars released by the Oil & Gas Regulatory Authority (OGRA) and the Federal Ministry of Energy (Petroleum Division). We eliminate rumors and sensationalized rate projections with timestamped mathematical accuracy.
 
 ## Regulated Fuel Products
 - **Petrol (Motor Spirit / Super 92 RON)**: National regulated ex-depot consumer rate.
@@ -14,18 +14,18 @@ Petrol Price Pakistan consumes and cross-verifies fuel rates directly from offic
 - **Hi-Octane (97 RON)**: Deregulated commercial premium fuel monitored via Pakistan State Oil (PSO).
 
 ## Key URLs & Tools
-- [Today's Fuel Rates](https://petrolpricepakistan.pk/): Real-time live prices updated within minutes of official circulars.
-- [Petrol Price in Pakistan](https://petrolpricepakistan.pk/petrol-price-in-pakistan): Motor Spirit breakdown, taxation, and revisions.
-- [Diesel Price in Pakistan](https://petrolpricepakistan.pk/diesel-price-in-pakistan): High-Speed Diesel rates and economic indicators.
-- [Hi-Octane Price in Pakistan](https://petrolpricepakistan.pk/hi-octane-price-in-pakistan): Octane+ Euro 5 retail rates.
-- [Kerosene Oil Price in Pakistan](https://petrolpricepakistan.pk/kerosene-oil-price-in-pakistan): Superior Kerosene Oil rates.
-- [Light Diesel Oil Price in Pakistan](https://petrolpricepakistan.pk/light-diesel-oil-price-in-pakistan): LDO agricultural rates.
-- [LPG Price in Pakistan](https://petrolpricepakistan.pk/lpg-price-in-pakistan): Liquefied Petroleum Gas monthly cylinder rates.
-- [Fuel Price History Archive](https://petrolpricepakistan.pk/petrol-price-history): Historical gazette archive from 2026 backwards.
-- [Diesel Price History](https://petrolpricepakistan.pk/diesel-price-history): High-Speed Diesel historical notifications.
-- [Price Increases & Decreases](https://petrolpricepakistan.pk/fuel-price-changes): Exact mathematical paisa revisions.
-- [Fuel Tank Fill-Up Calculator](https://petrolpricepakistan.pk/petrol-calculator): Accurate fill-up planning tool for bikes, hatchbacks, sedans, and SUVs.
-- [Advertise With Us](https://petrolpricepakistan.pk/advertise): Advertising options and media inquiries for Pakistani motorists.
+- [Today's Fuel Rates](https://pakpetrolprice.pk/): Real-time live prices updated within minutes of official circulars.
+- [Petrol Price in Pakistan](https://pakpetrolprice.pk/petrol-price-in-pakistan): Motor Spirit breakdown, taxation, and revisions.
+- [Diesel Price in Pakistan](https://pakpetrolprice.pk/diesel-price-in-pakistan): High-Speed Diesel rates and economic indicators.
+- [Hi-Octane Price in Pakistan](https://pakpetrolprice.pk/hi-octane-price-in-pakistan): Octane+ Euro 5 retail rates.
+- [Kerosene Oil Price in Pakistan](https://pakpetrolprice.pk/kerosene-oil-price-in-pakistan): Superior Kerosene Oil rates.
+- [Light Diesel Oil Price in Pakistan](https://pakpetrolprice.pk/light-diesel-oil-price-in-pakistan): LDO agricultural rates.
+- [LPG Price in Pakistan](https://pakpetrolprice.pk/lpg-price-in-pakistan): Liquefied Petroleum Gas monthly cylinder rates.
+- [Fuel Price History Archive](https://pakpetrolprice.pk/petrol-price-history): Historical gazette archive from 2026 backwards.
+- [Diesel Price History](https://pakpetrolprice.pk/diesel-price-history): High-Speed Diesel historical notifications.
+- [Price Increases & Decreases](https://pakpetrolprice.pk/fuel-price-changes): Exact mathematical paisa revisions.
+- [Fuel Tank Fill-Up Calculator](https://pakpetrolprice.pk/petrol-calculator): Accurate fill-up planning tool for bikes, hatchbacks, sedans, and SUVs.
+- [Advertise With Us](https://pakpetrolprice.pk/advertise): Advertising options and media inquiries for Pakistani motorists.
 
 ## Pricing Mechanism
 Standard petrol and diesel prices in Pakistan are determined on a fortnightly cycle (effective 1st and 16th of each month) under the Petroleum Products (Petroleum Levy) Ordinance and OGRA formula incorporating:
@@ -36,6 +36,6 @@ Standard petrol and diesel prices in Pakistan are determined on a fortnightly cy
 5. Petroleum Development Levy (PDL)
 
 ## API & Structured Data Access
-- Sitemap: https://petrolpricepakistan.pk/sitemap.xml
-- Crawling Policy: https://petrolpricepakistan.pk/robots.txt
-- Full LLM Documentation: https://petrolpricepakistan.pk/llms-full.txt
+- Sitemap: https://pakpetrolprice.pk/sitemap.xml
+- Crawling Policy: https://pakpetrolprice.pk/robots.txt
+- Full LLM Documentation: https://pakpetrolprice.pk/llms-full.txt

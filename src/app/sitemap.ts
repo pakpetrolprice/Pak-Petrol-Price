@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://petrolpricepakistan.pk';
+  const baseUrl = 'https://pakpetrolprice.pk';
   const currentDate = new Date().toISOString();
 
   const routes: Array<{
