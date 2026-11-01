@@ -55,27 +55,58 @@ export function FAQSection({
           </p>
         </div>
 
-        {/* Full-Width 2-Column Balanced Desktop Accordion Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
-          {faqs.map((faq, idx) => (
-            <details
-              key={idx}
-              open={idx === 0}
-              className="group p-5 sm:p-6 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/80 hover:border-emerald-500/60 dark:hover:border-emerald-500/60 transition-all cursor-pointer shadow-xs"
-            >
-              <summary className="flex justify-between items-start gap-4 text-sm sm:text-base font-bold text-slate-950 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 select-none list-none pr-1">
-                <span className="leading-snug">{faq.question}</span>
-                <span className="shrink-0 w-7 h-7 rounded-lg bg-white dark:bg-slate-700/80 flex items-center justify-center text-slate-600 dark:text-slate-300 group-open:rotate-180 transition-transform shadow-xs border border-slate-200/60 dark:border-slate-600/60">
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
-                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                  </svg>
-                </span>
-              </summary>
-              <div className="mt-3.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal pt-3 border-t border-slate-200/70 dark:border-slate-700/70">
-                <p>{faq.answer}</p>
-              </div>
-            </details>
-          ))}
+        {/* Full-Width 2-Column Balanced Desktop Accordion (True Masonry Stack) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 items-start">
+          {/* Column 1 */}
+          <div className="flex flex-col gap-4">
+            {faqs.filter((_, idx) => idx % 2 === 0).map((faq, idx) => {
+              const originalIndex = idx * 2;
+              return (
+                <details
+                  key={originalIndex}
+                  open={originalIndex === 0}
+                  className="group p-5 sm:p-6 rounded-2xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 hover:border-emerald-500/60 dark:hover:border-emerald-500/60 transition-all cursor-pointer shadow-xs"
+                >
+                  <summary className="flex justify-between items-start gap-4 text-sm sm:text-base font-bold text-slate-950 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 select-none list-none pr-1 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg [&::-webkit-details-marker]:hidden">
+                    <span className="leading-snug">{faq.question}</span>
+                    <span className="shrink-0 w-7 h-7 rounded-lg bg-white dark:bg-slate-700/80 flex items-center justify-center text-slate-600 dark:text-slate-300 group-open:rotate-180 transition-transform shadow-xs border border-slate-200/60 dark:border-slate-600/60">
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
+                        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="mt-3.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal pt-3 border-t border-slate-200/70 dark:border-slate-700/70">
+                    <p>{faq.answer}</p>
+                  </div>
+                </details>
+              );
+            })}
+          </div>
+
+          {/* Column 2 */}
+          <div className="flex flex-col gap-4">
+            {faqs.filter((_, idx) => idx % 2 !== 0).map((faq, idx) => {
+              const originalIndex = idx * 2 + 1;
+              return (
+                <details
+                  key={originalIndex}
+                  className="group p-5 sm:p-6 rounded-2xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 hover:border-emerald-500/60 dark:hover:border-emerald-500/60 transition-all cursor-pointer shadow-xs"
+                >
+                  <summary className="flex justify-between items-start gap-4 text-sm sm:text-base font-bold text-slate-950 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 select-none list-none pr-1 outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg [&::-webkit-details-marker]:hidden">
+                    <span className="leading-snug">{faq.question}</span>
+                    <span className="shrink-0 w-7 h-7 rounded-lg bg-white dark:bg-slate-700/80 flex items-center justify-center text-slate-600 dark:text-slate-300 group-open:rotate-180 transition-transform shadow-xs border border-slate-200/60 dark:border-slate-600/60">
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
+                        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="mt-3.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal pt-3 border-t border-slate-200/70 dark:border-slate-700/70">
+                    <p>{faq.answer}</p>
+                  </div>
+                </details>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

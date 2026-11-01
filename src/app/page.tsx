@@ -2,8 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { FuelRepository } from '@/lib/fuel-repository';
 import { PriceCard } from '@/components/PriceCard';
-import { FuelCalculator } from '@/components/FuelCalculator';
-import { TankFillCalculator } from '@/components/TankFillCalculator';
+import { FuelCalculatorSuite } from '@/components/FuelCalculatorSuite';
 import { OgraStatusWidget } from '@/components/OgraStatusWidget';
 import { FAQSection } from '@/components/FAQSection';
 import { HOME_FAQS } from '@/lib/faq-data';
@@ -207,55 +206,12 @@ export default async function HomePage() {
             </p>
           </div>
 
-          {/* Balanced 2-Column Spacious Workspace */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
-            {/* Left Tool: Vehicle Tank Fill-Up Estimator */}
-            <div className="w-full">
-              <TankFillCalculator
-                compact={false}
-                petrolPrice={petrolPrice}
-                dieselPrice={dieselPrice}
-                hiOctanePrice={hiOctanePrice}
-              />
-            </div>
-
-            {/* Right Tool: Trip Cost Estimator & Motorway Benchmarks */}
-            <div className="space-y-6 w-full">
-              <FuelCalculator
-                initialPetrolPrice={petrolPrice}
-                initialDieselPrice={dieselPrice}
-                initialHiOctanePrice={hiOctanePrice}
-              />
-
-              {/* Intercity Distance & Motorway Benchmarks */}
-              <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm space-y-3">
-                <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
-                  <span className="text-base">🛣️</span>
-                  <h3 className="font-black text-sm text-slate-950 dark:text-white">
-                    Common Motorway Route Benchmarks
-                  </h3>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
-                    <span className="font-bold text-slate-800 dark:text-slate-200">Lahore to Islamabad</span>
-                    <span className="font-mono text-emerald-700 dark:text-emerald-400 font-bold">M-2 (~375 KM)</span>
-                  </div>
-                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
-                    <span className="font-bold text-slate-800 dark:text-slate-200">Karachi to Hyderabad</span>
-                    <span className="font-mono text-emerald-700 dark:text-emerald-400 font-bold">M-9 (~165 KM)</span>
-                  </div>
-                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
-                    <span className="font-bold text-slate-800 dark:text-slate-200">Islamabad to Peshawar</span>
-                    <span className="font-mono text-emerald-700 dark:text-emerald-400 font-bold">M-1 (~180 KM)</span>
-                  </div>
-                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
-                    <span className="font-bold text-slate-800 dark:text-slate-200">Multan to Lahore</span>
-                    <span className="font-mono text-emerald-700 dark:text-emerald-400 font-bold">M-3 (~340 KM)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Unified Full-Width Workspace (Zero blank space, zero side-by-side struggle) */}
+          <FuelCalculatorSuite
+            petrolPrice={petrolPrice}
+            dieselPrice={dieselPrice}
+            hiOctanePrice={hiOctanePrice}
+          />
         </section>
 
         {/* ============================================================ */}

@@ -4,8 +4,7 @@ import { FuelRepository } from '@/lib/fuel-repository';
 import { PriceCard } from '@/components/PriceCard';
 import { HistoricalTable } from '@/components/HistoricalTable';
 import { PriceChart } from '@/components/PriceChart';
-import { FuelCalculator } from '@/components/FuelCalculator';
-import { TankFillCalculator } from '@/components/TankFillCalculator';
+import { FuelCalculatorSuite } from '@/components/FuelCalculatorSuite';
 import { OgraStatusWidget } from '@/components/OgraStatusWidget';
 import { FAQSection } from '@/components/FAQSection';
 import { getPetrolPageFaqs } from '@/lib/faq-data';
@@ -83,30 +82,22 @@ export default async function PetrolPage() {
         </div>
       </section>
 
-      {/* ZONE 4: Dedicated Calculators Suite (Balanced 2-Column Space) */}
+      {/* ZONE 4: Dedicated Fuel & Commute Calculator Suite */}
       <section className="space-y-6">
         <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide uppercase mb-1">
             <span>⚡ Interactive Budget Tools</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
-            Petrol Cost Calculators
+            Petrol Cost &amp; Commute Calculators
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
-          <TankFillCalculator
-            compact={false}
-            petrolPrice={petrolRate}
-            dieselPrice={dieselRate}
-            hiOctanePrice={hiOctaneRate}
-          />
-          <FuelCalculator
-            initialPetrolPrice={petrolRate}
-            initialDieselPrice={dieselRate}
-            initialHiOctanePrice={hiOctaneRate}
-          />
-        </div>
+        <FuelCalculatorSuite
+          petrolPrice={petrolRate}
+          dieselPrice={dieselRate}
+          hiOctanePrice={hiOctaneRate}
+        />
       </section>
 
       {/* ZONE 5: Full-Width FAQs */}
