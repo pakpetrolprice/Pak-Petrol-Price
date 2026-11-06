@@ -226,12 +226,12 @@ export async function GET(request: NextRequest) {
   }
 
   const defaultPaisaMap: Record<string, number> = {
-    petrol: 37925,
-    diesel: 39582,
+    petrol: 35259,
+    diesel: 38225,
     'hi-octane': 41500,
-    kerosene: 33096,
-    ldo: 27524,
-    lpg: 27934,
+    kerosene: 32367,
+    ldo: 26909,
+    lpg: 29408,
   };
 
   // 2. Scrape live official sources
@@ -247,7 +247,7 @@ export async function GET(request: NextRequest) {
       id: 'petrol',
       scrapedPrice: scraped.petrol,
       sourceType: 'official_notification',
-      sourceUrl: scraped.sourceUrl || 'https://price.ogra.org.pk',
+      sourceUrl: scraped.sourceUrl || 'https://psopk.com/en/fuels/fuel-prices',
     },
     {
       id: 'diesel',
@@ -265,13 +265,13 @@ export async function GET(request: NextRequest) {
       id: 'kerosene',
       scrapedPrice: scraped.kerosene,
       sourceType: 'official_notification',
-      sourceUrl: scraped.sourceUrl || 'https://price.ogra.org.pk',
+      sourceUrl: 'https://psopk.com/en/fuels/fuel-prices',
     },
     {
       id: 'ldo',
       scrapedPrice: scraped.ldo,
       sourceType: 'official_notification',
-      sourceUrl: scraped.sourceUrl || 'https://price.ogra.org.pk',
+      sourceUrl: 'https://psopk.com/en/fuels/fuel-prices',
     },
     {
       id: 'lpg',
@@ -290,20 +290,6 @@ export async function GET(request: NextRequest) {
 
     const currentPaisa = latestByProduct[p.id]?.pricePaisa || defaultPaisaMap[p.id] || 0;
     const newPaisa = Math.round(p.scrapedPrice * 100);
-
-    // Guard against stale upstream OMC tables (e.g. PSO table showing outdated Oct 24 prices 377.71 / 393.66 when active gazette revision is Oct 27 379.25 / 395.82)
-    const isOutdatedOmcRollback =
-      (p.id === 'petrol' && newPaisa === 37771 && currentPaisa === 37925) ||
-      (p.id === 'diesel' && newPaisa === 39366 && currentPaisa === 39582);
-
-    const isOlderNotification =
-      scraped.notificationTitle &&
-      /October\s*(?:2[0-4]|1\d|[1-9])\b/i.test(scraped.notificationTitle);
-
-    if (isOutdatedOmcRollback || (isOlderNotification && (newPaisa === 37771 || newPaisa === 39366))) {
-      console.warn(`[Cron Scraper] Retaining verified Oct 27 gazette price for ${p.id} (${(currentPaisa/100).toFixed(2)}). Upstream portal has not yet refreshed its web table.`);
-      continue;
-    }
 
     if (currentPaisa > 0) {
       if (newPaisa !== currentPaisa) {
