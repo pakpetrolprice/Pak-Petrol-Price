@@ -4,6 +4,7 @@ import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ThemeProvider } from '@/context/ThemeContext';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 
 const fontSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -130,6 +131,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans text-base leading-relaxed selection:bg-emerald-300 selection:text-emerald-950 transition-colors duration-200 overflow-x-hidden w-full max-w-full">
+        <GoogleAnalytics />
         <ThemeProvider>
           <Header />
           <main className="flex-1 w-full max-w-full">{children}</main>

@@ -59,3 +59,16 @@ button, a, input, select, textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.6);
 }
+
+/* Suppress Netlify Drawer & Injected Badge Elements */
+#netlify-drawer,
+[data-netlify-drawer],
+.netlify-badge,
+iframe[src*="netlify"],
+div[data-netlify-badge] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
