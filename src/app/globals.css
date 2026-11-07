@@ -60,15 +60,30 @@ button, a, input, select, textarea {
   background: rgba(148, 163, 184, 0.6);
 }
 
-/* Suppress Netlify Drawer & Injected Badge Elements */
+/* Completely eliminate any Netlify badge, drawer, watermark, or injected iframe */
 #netlify-drawer,
 [data-netlify-drawer],
+netlify-drawer,
 .netlify-badge,
+[class*="netlify-badge"],
+[id*="netlify-badge"],
+[id*="netlify-drawer"],
+[class*="netlify-drawer"],
 iframe[src*="netlify"],
-div[data-netlify-badge] {
+iframe[id*="netlify"],
+div[data-netlify-badge],
+a[href*="netlify.com/?utm_campaign"],
+a[href*="netlify.new/?utm_campaign"],
+a[href*="netlify.com"][class*="badge"],
+div[style*="z-index: 2147483647"][style*="bottom"] {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  z-index: -999999 !important;
 }
 
