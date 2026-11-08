@@ -267,14 +267,6 @@ export function Header() {
 
             {/* Right Controls */}
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-              {/* Direct Contact Button */}
-              <Link
-                href="/contact"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-all select-none"
-              >
-                <span>Contact</span>
-              </Link>
-
               <ThemeToggle />
 
               {/* Mobile Drawer Button */}
