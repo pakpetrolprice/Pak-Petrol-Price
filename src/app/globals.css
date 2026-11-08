@@ -5,11 +5,23 @@
 :root {
   --background: #f8fafc;
   --foreground: #090d16;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --border: #e2e8f0;
+  --border-muted: #edf2f7;
+  --brand-primary: #059669;
+  --brand-accent: #0d9488;
 }
 
 .dark {
-  --background: #080d1a;
+  --background: #070b14;
   --foreground: #f8fafc;
+  --surface: #0e1526;
+  --surface-muted: #151f36;
+  --border: #1e293b;
+  --border-muted: #162032;
+  --brand-primary: #10b981;
+  --brand-accent: #14b8a6;
 }
 
 html {
@@ -29,7 +41,27 @@ html, body {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.011em;
+}
+
+/* Tabular figures for financial accuracy and clean alignment */
+.tabular-nums, .price-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Subtle luxury glow effect for focal elements */
+.glow-emerald {
+  box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.15);
+}
+
+.glow-card {
+  box-shadow: 0 4px 24px -2px rgba(15, 23, 42, 0.04), 0 1px 2px 0 rgba(15, 23, 42, 0.02);
+}
+
+.dark .glow-card {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* Optimize touch interactions on mobile devices */
@@ -48,12 +80,12 @@ button, a, input, select, textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.4);
+  background: rgba(148, 163, 184, 0.3);
   border-radius: 9999px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.4);
+  background: rgba(100, 116, 139, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {

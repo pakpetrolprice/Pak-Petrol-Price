@@ -63,10 +63,10 @@ export function HistoricalTable({
     <div className="space-y-4 w-full">
       {/* Interactive Fuel Filter Bar */}
       {enableFuelFilter && (
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50 dark:bg-slate-800/60 p-3 sm:p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50 dark:bg-slate-900/80 p-3 sm:p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              Filter by Fuel:
+            <span className="text-[11px] font-mono font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+              Filter Product:
             </span>
           </div>
 
@@ -84,18 +84,18 @@ export function HistoricalTable({
                   key={opt.id}
                   type="button"
                   onClick={() => handleFuelFilterChange(opt.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer select-none active:scale-95 flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer select-none active:scale-95 flex items-center gap-1.5 ${
                     active
-                      ? 'bg-emerald-700 text-white shadow-xs'
+                      ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 shadow-xs'
                       : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/80'
                   }`}
                 >
                   <span>{opt.label}</span>
                   <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                    className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
                       active
-                        ? 'bg-emerald-800 text-emerald-100'
-                        : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                        ? 'bg-slate-800 text-slate-200 dark:bg-slate-200 dark:text-slate-800'
+                        : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400'
                     }`}
                   >
                     {count}
@@ -109,84 +109,88 @@ export function HistoricalTable({
 
       {/* Table Container */}
       {filteredRecords.length === 0 ? (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 text-center text-slate-500 dark:text-slate-400 text-sm font-bold">
-          No verified records found for {PRODUCT_LABELS[selectedFuel] || 'this fuel'}.
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-8 text-center text-slate-500 dark:text-slate-400 text-sm font-medium">
+          No verified audit records found for {PRODUCT_LABELS[selectedFuel] || 'this fuel'}.
         </div>
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden transition-colors w-full">
+        <div className="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-xs overflow-hidden transition-colors w-full">
           {/* Mobile Swipe Hint */}
-          <div className="sm:hidden px-4 py-2 bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-slate-500 dark:text-slate-400">
-            <span>Swipe horizontally to view full audit data</span>
-            <span className="text-emerald-700 dark:text-emerald-400 font-black">⇄ Scroll</span>
+          <div className="sm:hidden px-4 py-2 bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span>Swipe horizontally for full audit trail</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-bold">⇄ Scroll</span>
           </div>
 
           <div className="overflow-x-auto w-full -webkit-overflow-scrolling-touch">
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
-                <tr className="bg-slate-100 dark:bg-slate-800/90 border-b border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 font-black uppercase tracking-wider text-[11px] sm:text-xs">
-                  {showProductColumn && <th className="py-3 px-3 sm:py-3.5 sm:px-4">Fuel Product</th>}
-                  <th className="py-3 px-3 sm:py-3.5 sm:px-4">Effective Date</th>
-                  <th className="py-3 px-3 sm:py-3.5 sm:px-4">Price (PKR)</th>
-                  <th className="py-3 px-3 sm:py-3.5 sm:px-4">Revision</th>
-                  <th className="py-3 px-3 sm:py-3.5 sm:px-4">Source Authority</th>
-                  <th className="py-3 px-3 sm:py-3.5 sm:px-4">Status</th>
+                <tr className="bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200/80 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-mono text-[10px] sm:text-[11px] uppercase tracking-wider">
+                  {showProductColumn && <th className="py-3.5 px-4">Fuel Grade</th>}
+                  <th className="py-3.5 px-4">Effective Date</th>
+                  <th className="py-3.5 px-4">Ceiling Rate (PKR)</th>
+                  <th className="py-3.5 px-4">Revision Delta</th>
+                  <th className="py-3.5 px-4">Official Gazette ID</th>
+                  <th className="py-3.5 px-4">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 font-medium text-slate-800 dark:text-slate-200">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-800 dark:text-slate-200">
                 {paginatedRecords.map(record => {
                   const change = VerificationEngine.calculateChange(record.pricePaisa, record.previousPricePaisa);
                   const formattedDate = new Intl.DateTimeFormat('en-PK', {
-                    dateStyle: 'medium',
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
                     timeZone: 'Asia/Karachi',
                   }).format(new Date(record.effectiveStart));
 
                   const productName = PRODUCT_LABELS[record.productId] || record.productId;
 
                   return (
-                    <tr key={record.id} className="hover:bg-slate-50/90 dark:hover:bg-slate-800/50 transition">
+                    <tr key={record.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
                       {showProductColumn && (
-                        <td className="py-3 px-3 sm:py-3.5 sm:px-4 font-black text-slate-950 dark:text-white whitespace-nowrap">
+                        <td className="py-3.5 px-4 font-bold text-slate-950 dark:text-white whitespace-nowrap">
                           {productName}
                         </td>
                       )}
-                      <td className="py-3 px-3 sm:py-3.5 sm:px-4 font-bold text-slate-900 dark:text-white whitespace-nowrap">
+                      <td className="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap font-mono text-xs">
                         {formattedDate}
                       </td>
-                      <td className="py-3 px-3 sm:py-3.5 sm:px-4 font-black text-emerald-800 dark:text-emerald-400 whitespace-nowrap text-sm sm:text-base">
-                        Rs. {record.pricePkr.toFixed(2)}
+                      <td className="py-3.5 px-4 font-extrabold text-slate-950 dark:text-white whitespace-nowrap tabular-nums price-num text-sm">
+                        <span className="text-xs text-slate-400 mr-1">Rs.</span>{record.pricePkr.toFixed(2)}
                       </td>
-                      <td className="py-3 px-3 sm:py-3.5 sm:px-4 whitespace-nowrap">
+                      <td className="py-3.5 px-4 whitespace-nowrap font-mono">
                         {change.direction === 'INCREASE' && (
-                          <span className="inline-flex items-center gap-1 text-xs font-black text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-900 px-2 py-0.5 rounded-lg">
+                          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900/60 px-2 py-0.5 rounded">
                             <span>▲</span>
                             <span>+Rs. {change.changePkr.toFixed(2)}</span>
                           </span>
                         )}
                         {change.direction === 'DECREASE' && (
-                          <span className="inline-flex items-center gap-1 text-xs font-black text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 px-2 py-0.5 rounded-lg">
+                          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 px-2 py-0.5 rounded">
                             <span>▼</span>
                             <span>-Rs. {Math.abs(change.changePkr).toFixed(2)}</span>
                           </span>
                         )}
                         {change.direction === 'UNCHANGED' && (
-                          <span className="inline-flex items-center text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-lg">
+                          <span className="inline-flex items-center text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">
                             Unchanged
                           </span>
                         )}
                       </td>
-                      <td className="py-3 px-3 sm:py-3.5 sm:px-4">
+                      <td className="py-3.5 px-4">
                         <a
                           href={record.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-emerald-700 dark:text-emerald-400 hover:underline font-black truncate inline-block max-w-[140px] sm:max-w-[200px]"
+                          className="font-mono text-xs text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300 hover:underline inline-flex items-center gap-1 truncate max-w-[160px] sm:max-w-[220px]"
                         >
-                          {record.notificationIdentifier || (record.sourceType === 'OGRA_NOTIFIED' ? 'OGRA Circular' : record.sourceType === 'PSO_OFFICIAL' ? 'PSO Official' : 'Official Gazette')} ↗
+                          <span className="truncate">{record.notificationIdentifier || (record.sourceType === 'OGRA_NOTIFIED' ? 'OGRA Circular' : 'Official Gazette')}</span>
+                          <span>↗</span>
                         </a>
                       </td>
-                      <td className="py-3 px-3 sm:py-3.5 sm:px-4">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] sm:text-xs font-black bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 whitespace-nowrap">
-                          ✓ {record.verificationStatus}
+                      <td className="py-3.5 px-4">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/80 whitespace-nowrap">
+                          <span>✓</span>
+                          <span>{record.verificationStatus}</span>
                         </span>
                       </td>
                     </tr>

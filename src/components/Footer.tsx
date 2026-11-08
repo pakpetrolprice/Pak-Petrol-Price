@@ -4,113 +4,108 @@ import { BrandLogo } from '@/components/BrandLogo';
 
 export function Footer() {
   return (
-    <footer className="bg-slate-900 dark:bg-slate-950 text-slate-200 dark:text-slate-300 border-t-2 border-slate-800 dark:border-slate-800/80 mt-12 sm:mt-20 lg:mt-28 transition-colors w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-10 sm:mb-16">
+    <footer className="bg-slate-950 text-slate-300 border-t border-slate-800/80 mt-16 sm:mt-24 transition-colors w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 mb-12 sm:mb-16">
           {/* Brand info */}
-          <div className="sm:col-span-2 lg:col-span-1 space-y-4 sm:space-y-5">
-            <BrandLogo size="lg" showDomain={true} />
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-              Pakistan&apos;s authoritative consumer portal for verified OGRA notified fuel rates, high-speed diesel, and historical pricing revisions.
+          <div className="sm:col-span-2 space-y-4">
+            <BrandLogo size="md" showDomain={true} />
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+              Pakistan&apos;s authoritative commodity benchmark monitoring platform for officially verified OGRA petroleum ceilings, high-speed diesel tariffs, and historical gazette revisions.
             </p>
-            <div className="text-xs sm:text-sm text-emerald-400 font-extrabold flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              <span>Directly verified from OGRA &amp; Ministry of Energy.</span>
+            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Directly verified against Federal Gazette circulars</span>
             </div>
           </div>
 
-          {/* Quick links */}
+          {/* Quick links: Rates */}
           <div>
-            <h3 className="text-sm sm:text-base font-black uppercase tracking-wider text-white mb-3 sm:mb-5">
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">
               Fuel Rates
             </h3>
-            <ul className="space-y-2.5 sm:space-y-3.5 text-sm sm:text-base">
+            <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <Link href="/petrol-price-in-pakistan" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Petrol Price in Pakistan
+                <Link href="/petrol-price-in-pakistan" className="text-slate-400 hover:text-white transition">
+                  Petrol Rate Today
                 </Link>
               </li>
               <li>
-                <Link href="/diesel-price-in-pakistan" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Diesel Price in Pakistan
+                <Link href="/diesel-price-in-pakistan" className="text-slate-400 hover:text-white transition">
+                  High-Speed Diesel
                 </Link>
               </li>
               <li>
-                <Link href="/hi-octane-price-in-pakistan" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Hi-Octane Price in Pakistan
+                <Link href="/hi-octane-price-in-pakistan" className="text-slate-400 hover:text-white transition">
+                  Hi-Octane (RON 97)
                 </Link>
               </li>
               <li>
-                <Link href="/fuel-price-changes" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Latest Price Increases &amp; Decreases
+                <Link href="/fuel-price-changes" className="text-slate-400 hover:text-white transition">
+                  Price Revision Ledger
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Tools & History */}
+          {/* Tools & Archive */}
           <div>
-            <h3 className="text-sm sm:text-base font-black uppercase tracking-wider text-white mb-3 sm:mb-5">
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">
               Tools &amp; History
             </h3>
-            <ul className="space-y-2.5 sm:space-y-3.5 text-sm sm:text-base">
+            <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <Link href="/petrol-calculator" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Fuel Tank Fill-Up Calculator
+                <Link href="/petrol-calculator" className="text-slate-400 hover:text-white transition">
+                  Tank Fill-Up Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/petrol-calculator#calculator" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Journey Distance Calculator
+                <Link href="/petrol-calculator#calculator" className="text-slate-400 hover:text-white transition">
+                  Motorway Travel Estimator
                 </Link>
               </li>
               <li>
-                <Link href="/petrol-price-history" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Historical Petrol Price Archive
+                <Link href="/petrol-price-history" className="text-slate-400 hover:text-white transition">
+                  Petrol Historical Archive
                 </Link>
               </li>
               <li>
-                <Link href="/diesel-price-history" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Historical Diesel Price Archive
-                </Link>
-              </li>
-              <li>
-                <Link href="/advertise" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Advertise With Us
+                <Link href="/diesel-price-history" className="text-slate-400 hover:text-white transition">
+                  Diesel Historical Archive
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Governance & Policies */}
+          {/* Institutional & Legal */}
           <div>
-            <h3 className="text-sm sm:text-base font-black uppercase tracking-wider text-white mb-3 sm:mb-5">
-              About &amp; Legal
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">
+              Compliance &amp; Legal
             </h3>
-            <ul className="space-y-2.5 sm:space-y-3.5 text-sm sm:text-base">
+            <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <Link href="/about" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  About Us &amp; Mission
+                <Link href="/about" className="text-slate-400 hover:text-white transition">
+                  Methodology &amp; Verification
                 </Link>
               </li>
               <li>
-                <Link href="/terms-and-conditions" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Terms &amp; Conditions
+                <Link href="/disclaimer" className="text-slate-400 hover:text-white transition">
+                  Regulatory Disclaimer
                 </Link>
               </li>
               <li>
-                <Link href="/disclaimer" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Official Disclaimer
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy-policy" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
+                <Link href="/privacy-policy" className="text-slate-400 hover:text-white transition">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-emerald-400 transition font-medium min-h-[32px] flex items-center">
-                  Contact Us
+                <Link href="/terms-and-conditions" className="text-slate-400 hover:text-white transition">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-slate-400 hover:text-white transition">
+                  Contact Desk
                 </Link>
               </li>
             </ul>
@@ -118,12 +113,12 @@ export function Footer() {
         </div>
 
         {/* Disclaimer note */}
-        <div className="border-t border-slate-800 pt-6 sm:pt-8 text-xs sm:text-sm text-slate-400 leading-relaxed text-center sm:text-left space-y-2 sm:space-y-3">
-          <p>
-            Official petroleum retail prices in Pakistan are regulated by the Oil &amp; Gas Regulatory Authority (OGRA) and the Ministry of Energy (Petroleum Division). We do not predict or fabricate government announcements. All historical and active records reflect officially notified circulars.
+        <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
+          <p className="max-w-2xl text-center md:text-left">
+            Official petroleum retail maximums in Pakistan are notified fortnightly by OGRA &amp; Ministry of Energy. Pak Petrol Price is an independent benchmark monitoring platform.
           </p>
-          <p className="text-slate-500 font-semibold text-xs">
-            &copy; 2026 Pak Petrol Price (pakpetrolprice.pk). All rights reserved.
+          <p className="shrink-0 text-slate-400 font-semibold">
+            &copy; 2026 Pak Petrol Price (pakpetrolprice.pk)
           </p>
         </div>
       </div>

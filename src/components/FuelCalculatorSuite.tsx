@@ -20,10 +20,10 @@ export function FuelCalculatorSuite({
   return (
     <div className="w-full space-y-6">
       {/* High-End Segmented Control Switcher */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-100 dark:bg-slate-900/80 p-2 sm:p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-black text-slate-900 dark:text-white px-2">
-            Select Tool:
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-100/80 dark:bg-slate-900/80 p-2 sm:p-2.5 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+        <div className="flex items-center gap-2 px-2">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Calculator Mode:
           </span>
         </div>
 
@@ -31,27 +31,34 @@ export function FuelCalculatorSuite({
           <button
             type="button"
             onClick={() => setActiveTab('tank')}
-            className={`px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-2 cursor-pointer select-none ${
+            className={`px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.98] ${
               activeTab === 'tank'
-                ? 'bg-emerald-700 text-white shadow-sm ring-1 ring-emerald-600'
-                : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400 border border-slate-200 dark:border-slate-700'
+                ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 shadow-xs'
+                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border border-slate-200/80 dark:border-slate-700/80'
             }`}
           >
-            <span>⛽</span>
-            <span>Vehicle Tank Fill-Up Cost</span>
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17" />
+              <path d="M15 9h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9.5a1.5 1.5 0 0 0-3-1" />
+              <path d="M3 22h12" />
+            </svg>
+            <span>Vehicle Tank Fill-Up</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('trip')}
-            className={`px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-2 cursor-pointer select-none ${
+            className={`px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.98] ${
               activeTab === 'trip'
-                ? 'bg-emerald-700 text-white shadow-sm ring-1 ring-emerald-600'
-                : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400 border border-slate-200 dark:border-slate-700'
+                ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 shadow-xs'
+                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border border-slate-200/80 dark:border-slate-700/80'
             }`}
           >
-            <span>🛣️</span>
-            <span>Trip &amp; Commute Cost Estimator</span>
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+            </svg>
+            <span>Trip &amp; Commute Cost</span>
           </button>
         </div>
       </div>

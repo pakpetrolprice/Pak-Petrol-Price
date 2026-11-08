@@ -14,19 +14,19 @@ export function BrandLogo({
   showDomain = true,
   clickable = true,
 }: BrandLogoProps) {
-  const iconDimensions = {
-    sm: 'w-8 h-8 rounded-lg text-xs',
-    md: 'w-10 h-10 rounded-xl text-sm',
-    lg: 'w-12 h-12 rounded-2xl text-base',
+  const iconSize = {
+    sm: 'w-7 h-7 rounded-lg',
+    md: 'w-9 h-9 rounded-xl',
+    lg: 'w-11 h-11 rounded-2xl',
   }[size];
 
   const titleSize = {
-    sm: 'text-base sm:text-lg',
-    md: 'text-lg sm:text-xl',
-    lg: 'text-2xl sm:text-3xl',
+    sm: 'text-base font-extrabold tracking-tight',
+    md: 'text-lg sm:text-xl font-black tracking-tight',
+    lg: 'text-2xl sm:text-3xl font-black tracking-tight',
   }[size];
 
-  const domainSize = {
+  const sublineSize = {
     sm: 'text-[9px]',
     md: 'text-[10px]',
     lg: 'text-xs',
@@ -34,46 +34,56 @@ export function BrandLogo({
 
   const content = (
     <div className="flex items-center gap-2.5 sm:gap-3 group select-none">
-      {/* Precision Vector Fuel Icon */}
+      {/* Precision Commodity Mark */}
       <div
-        className={`${iconDimensions} bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 dark:from-emerald-500 dark:via-emerald-600 dark:to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-900/20 group-hover:scale-105 group-hover:shadow-emerald-700/30 transition-all shrink-0 ring-1 ring-white/20`}
+        className={`${iconSize} relative bg-gradient-to-br from-emerald-600 via-teal-700 to-slate-900 dark:from-emerald-500 dark:via-teal-600 dark:to-slate-950 flex items-center justify-center text-white shadow-xs group-hover:shadow-md group-hover:shadow-emerald-500/20 group-hover:scale-[1.02] transition-all duration-300 ring-1 ring-black/5 dark:ring-white/10 overflow-hidden shrink-0`}
       >
+        {/* Subtle grid pattern background in mark */}
+        <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:6px_6px]" />
+        
+        {/* Clean Geometric Vector Mark: Fuel Drop with Metric Bar */}
         <svg
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2.2"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="w-5 h-5 sm:w-6 sm:h-6 text-white drop-shadow-xs"
+          className="w-4 h-4 sm:w-5 sm:h-5 text-white relative z-10 transition-transform duration-300 group-hover:scale-110"
         >
-          {/* Stylized Fuel Dispenser Body */}
-          <path d="M3 22V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v17" />
-          <path d="M15 9h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9.5a1.5 1.5 0 0 0-3-1" />
-          <path d="M3 22h12" />
-          {/* Gauge Window */}
-          <rect x="6" y="6" width="6" height="5" rx="1" fill="currentColor" fillOpacity="0.2" />
-          {/* Nozzle Handle Drop */}
-          <circle cx="21" cy="7" r="1" fill="currentColor" />
+          {/* Stylized droplet with precision gauge */}
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+          <path d="M12 12v4" strokeWidth="2.5" stroke="#34d399" />
+          <circle cx="12" cy="18" r="1" fill="#34d399" />
         </svg>
       </div>
 
-      {/* Typography & Domain Branding */}
+      {/* Typography & Subline */}
       <div className="flex flex-col min-w-0">
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 leading-none">
           <span
-            className={`${titleSize} font-black text-slate-950 dark:text-white tracking-tight leading-tight group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors truncate`}
+            className={`${titleSize} text-slate-900 dark:text-white transition-colors duration-200 truncate`}
           >
-            Pak Petrol Price
+            Pak Petrol <span className="text-emerald-600 dark:text-emerald-400">Price</span>
           </span>
-          <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-bold uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80">
+            PKR
+          </span>
         </div>
         {showDomain && (
-          <span
-            className={`${domainSize} font-extrabold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase leading-none mt-0.5`}
-          >
-            pakpetrolprice.pk
-          </span>
+          <div className="flex items-center gap-1.5 mt-1 leading-none">
+            <span
+              className={`${sublineSize} font-mono font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase`}
+            >
+              National Fuel Benchmark
+            </span>
+            <span className="w-1 h-1 rounded-full bg-emerald-500" />
+            <span
+              className={`${sublineSize} font-mono font-bold text-emerald-700 dark:text-emerald-400 uppercase`}
+            >
+              OGRA Notified
+            </span>
+          </div>
         )}
       </div>
     </div>
@@ -84,7 +94,7 @@ export function BrandLogo({
   }
 
   return (
-    <Link href="/" aria-label="Pak Petrol Price Home" className="inline-block">
+    <Link href="/" aria-label="Pak Petrol Price Home" className="inline-block outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg">
       {content}
     </Link>
   );

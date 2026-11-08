@@ -69,27 +69,37 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-10 sm:space-y-14 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12 sm:space-y-16 w-full">
         {/* ============================================================ */}
-        {/* ZONE 1: LIVE RATE BOARD & OFFICIAL SOURCE VERIFICATION       */}
+        {/* ZONE 1: LIVE COMMODITY RATE BOARD                           */}
         {/* ============================================================ */}
         <section aria-label="Current Fuel Rates" className="space-y-6">
-          {/* Header Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
-            <div className="flex items-center gap-2.5">
-              <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-              <div>
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-950 dark:text-white tracking-tight">
-                  Petrol Price Today in Pakistan
-                </h1>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-semibold mt-0.5">
-                  Official Ex-Depot Rates Regulated by OGRA &amp; Federal Ministry of Energy
-                </p>
+          {/* Executive Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-200/80 dark:border-slate-800/80">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 font-mono text-[11px] font-bold uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  National Benchmark Feed
+                </span>
+                <span className="text-xs text-slate-400">·</span>
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                  Fortnightly Notification
+                </span>
               </div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
+                Petrol &amp; Fuel Prices in Pakistan Today
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+                Official ex-depot maximum retail prices notified by the Oil &amp; Gas Regulatory Authority (OGRA) and the Ministry of Energy.
+              </p>
             </div>
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 self-start sm:self-auto">
-              <span>📅 Current Circular:</span>
-              <span className="font-mono text-emerald-700 dark:text-emerald-400 font-black">27 October 2026</span>
+
+            <div className="flex items-center gap-3 self-start md:self-auto shrink-0">
+              <div className="px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2 text-xs font-mono">
+                <span className="text-slate-400 uppercase">Cycle:</span>
+                <span className="font-bold text-slate-900 dark:text-white">Active Gazetted</span>
+              </div>
             </div>
           </div>
 
@@ -107,16 +117,16 @@ export default async function HomePage() {
           )}
 
           {/* Secondary Fuel Cards (Diesel, Hi-Octane, Kerosene, Light Diesel, LPG) */}
-          <div className="space-y-2.5">
+          <div className="space-y-3 pt-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                All Other Regulated Petroleum Products
+              <span className="text-[11px] font-mono font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                Regulated Petroleum Products Suite
               </span>
-              <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">
-                Official Consumer Rates
+              <span className="text-xs font-mono text-slate-400 dark:text-slate-500">
+                Official Consumer Ceilings
               </span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3.5 sm:gap-4">
               {otherFuels.map(product => (
                 <PriceCard
                   key={product.id}
@@ -129,59 +139,67 @@ export default async function HomePage() {
           </div>
 
           {/* Official OGRA Source Verification Bar */}
-          <OgraStatusWidget products={products} latestPrices={latestPrices} />
+          <div className="pt-2">
+            <OgraStatusWidget products={products} latestPrices={latestPrices} />
+          </div>
         </section>
 
         {/* ============================================================ */}
-        {/* ZONE 2: HISTORICAL TREND ANALYSIS (Full-Width Canvas)        */}
+        {/* ZONE 2: HISTORICAL TREND ANALYSIS (Financial Area Chart)     */}
         {/* ============================================================ */}
         <section aria-label="Historical Price Trend" className="space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200/80 dark:border-slate-800/80 pb-3">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide uppercase mb-1">
-                <span>📈 Official Historical Trend</span>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-mono text-[10px] font-bold uppercase tracking-wider">
+                  Price History
+                </span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
-                Petrol Price History &amp; Trend (PKR / Litre)
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white tracking-tight">
+                Petrol Price Trajectory &amp; Historical Curve (PKR / Litre)
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5 font-medium">
-                Verified official revision curve from authorized government publications
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                Audit curve mapped from consecutive Federal Government gazette notifications across 2026.
               </p>
             </div>
             <Link
               href="/petrol-price-history"
-              className="text-xs sm:text-sm font-black text-emerald-800 dark:text-emerald-300 hover:text-emerald-950 dark:hover:text-emerald-100 underline decoration-2 shrink-0"
+              className="text-xs sm:text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 inline-flex items-center gap-1 transition-colors shrink-0"
             >
-              Full History Archive →
+              <span>Full Historical Archive</span>
+              <span>→</span>
             </Link>
           </div>
 
-          <div className="w-full bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-4 sm:p-7 shadow-sm">
+          <div className="w-full bg-white dark:bg-slate-900/90 rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-slate-800 p-5 sm:p-7 shadow-xs">
             <PriceChart records={petrolHistory} productName="Petrol" />
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* ZONE 3: RECENT OFFICIAL ADJUSTMENTS LEDGER (Full-Width Table) */}
+        {/* ZONE 3: RECENT NOTIFICATIONS AUDIT LEDGER                    */}
         {/* ============================================================ */}
         <section aria-label="Recent Fuel Revisions" className="space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200/80 dark:border-slate-800/80 pb-3">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide uppercase mb-1">
-                <span>📋 Government Notifications</span>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-mono text-[10px] font-bold uppercase tracking-wider">
+                  Audit Ledger
+                </span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
-                Recent Official Price Adjustments
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white tracking-tight">
+                Official Revision Ledger &amp; Price Variance
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5 font-medium">
-                Exact rupee adjustments calculated between consecutive verified notifications
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                Exact rupee deltas calculated between consecutive authorized petroleum notifications.
               </p>
             </div>
             <Link
               href="/fuel-price-changes"
-              className="text-xs sm:text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline shrink-0"
+              className="text-xs sm:text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 inline-flex items-center gap-1 transition-colors shrink-0"
             >
-              All Price Changes →
+              <span>All Revisions</span>
+              <span>→</span>
             </Link>
           </div>
 
@@ -191,22 +209,23 @@ export default async function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* ZONE 4: DEDICATED FUEL & COMMUTE CALCULATOR SUITE            */}
+        {/* ZONE 4: INTERACTIVE FUEL CALCULATOR SUITE                    */}
         {/* ============================================================ */}
-        <section aria-label="Fuel Cost Calculators" id="calculators" className="space-y-6">
-          <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide uppercase mb-1">
-              <span>⚡ Interactive Budget Tools</span>
+        <section aria-label="Fuel Cost Calculators" id="calculators" className="space-y-5">
+          <div className="border-b border-slate-200/80 dark:border-slate-800/80 pb-3">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-mono text-[10px] font-bold uppercase tracking-wider">
+                Budget Tools
+              </span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
-              Fuel Cost &amp; Commute Calculators
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white tracking-tight">
+              Fuel Budget &amp; Commute Cost Estimators
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5 font-medium">
-              Calculate exact tank fill-up expenses for your vehicle or estimate one-way and round-trip journey budgets.
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              Calculate exact tank fill-up costs for your vehicle or simulate motorway journey travel budgets with live notified rates.
             </p>
           </div>
 
-          {/* Unified Full-Width Workspace (Zero blank space, zero side-by-side struggle) */}
           <FuelCalculatorSuite
             petrolPrice={petrolPrice}
             dieselPrice={dieselPrice}
@@ -215,13 +234,13 @@ export default async function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* ZONE 5: FULL-WIDTH KNOWLEDGE & FAQ CENTER                    */}
+        {/* ZONE 5: KNOWLEDGE BASE & FREQUENTLY ASKED QUESTIONS          */}
         {/* ============================================================ */}
         <section aria-label="Frequently Asked Questions" className="w-full">
           <FAQSection
             faqs={HOME_FAQS}
-            title="Frequently Asked Questions (Petrol &amp; Fuel Rates in Pakistan)"
-            description="Accurate, official answers regarding petroleum pricing mechanisms, fortnightly OGRA notifications, and retail variations in Pakistan."
+            title="Frequently Asked Questions (Fuel Prices in Pakistan)"
+            description="Verified explanations regarding OGRA petroleum pricing mechanisms, fortnightly cycles, and retail variations in Pakistan."
           />
         </section>
 
