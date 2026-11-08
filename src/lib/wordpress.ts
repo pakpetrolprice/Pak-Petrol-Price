@@ -16,7 +16,7 @@ export interface WordPressPost {
 // Fallback high-authority editorial market insights when WordPress is offline or pending initial setup
 export const SAMPLE_POSTS: WordPressPost[] = [
   {
-    id: 1,
+    id: 'sample-1',
     slug: 'how-ogra-calculates-fuel-prices-in-pakistan',
     title: 'How OGRA Calculates Petrol & Diesel Prices in Pakistan: The Complete Formula',
     excerpt: 'A comprehensive breakdown of the fortnightly pricing mechanism, Inland Freight Equalization Margin (IFEM), Petroleum Development Levy (PDL), and OMC margins.',
@@ -52,7 +52,7 @@ export const SAMPLE_POSTS: WordPressPost[] = [
     featuredImageAlt: 'Oil Refinery in Pakistan',
   },
   {
-    id: 2,
+    id: 'sample-2',
     slug: 'impact-of-global-brent-crude-on-pakistan-rupee-inflation',
     title: 'Global Brent Crude Fluctuations & Their Direct Impact on Pakistani Inflation',
     excerpt: 'Analyzing the transmission channel between international commodity markets, import bill pressure, and headline CPI inflation in Pakistan.',
@@ -80,7 +80,7 @@ export const SAMPLE_POSTS: WordPressPost[] = [
     featuredImageAlt: 'Global crude oil logistics and tankers',
   },
   {
-    id: 3,
+    id: 'sample-3',
     slug: 'euro-5-fuel-standards-pakistan-refineries-transition',
     title: 'Euro-5 Fuel Standards in Pakistan: Cleaner Emissions & Vehicle Engine Longevity',
     excerpt: 'How Pakistan transitioned from high-sulfur Euro-2 fuels to clean Euro-5 standards and what it means for modern vehicle performance.',
