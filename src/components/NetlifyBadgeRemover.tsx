@@ -11,6 +11,15 @@ export function NetlifyBadgeRemover() {
   useEffect(() => {
     function purgeNetlifyElements() {
       const selectors = [
+        'iframe#nl-badge-frame',
+        'iframe#nl-hud-frame',
+        'iframe[id="nl-badge-frame"]',
+        'iframe[id="nl-hud-frame"]',
+        'iframe[id^="nl-"]',
+        'iframe[title*="Netlify"]',
+        'iframe[title*="Powered by Netlify"]',
+        'script[data-nf-variant]',
+        'script[src*="/.netlify/scripts/hud"]',
         'site-badge',
         'netlify-badge',
         'netlify-drawer',

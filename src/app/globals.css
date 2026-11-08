@@ -93,6 +93,13 @@ button, a, input, select, textarea {
 }
 
 /* Completely eliminate any Netlify badge, drawer, watermark, or injected iframe */
+#nl-badge-frame,
+#nl-hud-frame,
+iframe[id="nl-badge-frame"],
+iframe[id="nl-hud-frame"],
+iframe[id^="nl-"],
+iframe[title*="Netlify"],
+iframe[title*="Powered by Netlify"],
 site-badge,
 netlify-badge,
 netlify-drawer,

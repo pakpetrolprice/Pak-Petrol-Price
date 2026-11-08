@@ -127,11 +127,65 @@ export default function RootLayout({
     <html lang="en" className={`h-full antialiased scroll-smooth ${fontSans.variable}`} suppressHydrationWarning>
       <head>
         <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // Ensure guard elements exist immediately before anything else loads
+                try {
+                  if (!document.getElementById('nl-badge-frame')) {
+                    var d1 = document.createElement('div');
+                    d1.id = 'nl-badge-frame';
+                    d1.style.display = 'none';
+                    d1.setAttribute('aria-hidden', 'true');
+                    document.documentElement.appendChild(d1);
+                  }
+                  if (!document.getElementById('nl-hud-frame')) {
+                    var d2 = document.createElement('div');
+                    d2.id = 'nl-hud-frame';
+                    d2.style.display = 'none';
+                    d2.setAttribute('aria-hidden', 'true');
+                    document.documentElement.appendChild(d2);
+                  }
+                } catch(e) {}
+
+                // Block Netlify HUD script and remove any Netlify iframes
+                var obs = new MutationObserver(function(mutations) {
+                  for (var i = 0; i < mutations.length; i++) {
+                    for (var j = 0; j < mutations[i].addedNodes.length; j++) {
+                      var node = mutations[i].addedNodes[j];
+                      if (node && node.nodeType === 1) {
+                        if (node.tagName === 'SCRIPT' && (
+                          (node.src && node.src.indexOf('/.netlify/scripts/hud') !== -1) ||
+                          (node.dataset && node.dataset.nfVariant)
+                        )) {
+                          node.remove();
+                          node.type = 'javascript/blocked';
+                        }
+                        if (node.tagName === 'IFRAME' && (
+                          node.id === 'nl-badge-frame' || 
+                          node.id === 'nl-hud-frame' || 
+                          (node.title && node.title.indexOf('Netlify') !== -1)
+                        )) {
+                          node.remove();
+                        }
+                      }
+                    }
+                  }
+                });
+                obs.observe(document.documentElement, { childList: true, subtree: true });
+              })();
+            `,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGlobal) }}
         />
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans text-base leading-relaxed selection:bg-emerald-300 selection:text-emerald-950 transition-colors duration-200 overflow-x-hidden w-full max-w-full">
+        {/* Netlify HUD Early Exit Guard: If either id exists, Netlify HUD returns immediately without rendering */}
+        <div id="nl-badge-frame" style={{ display: 'none' }} aria-hidden="true" />
+        <div id="nl-hud-frame" style={{ display: 'none' }} aria-hidden="true" />
         <GoogleAnalytics />
         <NetlifyBadgeRemover />
         <ThemeProvider>
