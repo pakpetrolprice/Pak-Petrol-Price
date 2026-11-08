@@ -7,12 +7,14 @@ interface BrandLogoProps {
   size?: 'sm' | 'md' | 'lg';
   showDomain?: boolean;
   clickable?: boolean;
+  inverted?: boolean;
 }
 
 export function BrandLogo({
   size = 'md',
   showDomain = true,
   clickable = true,
+  inverted = false,
 }: BrandLogoProps) {
   const iconSize = {
     sm: 'w-7 h-7 rounded-lg',
@@ -31,6 +33,14 @@ export function BrandLogo({
     md: 'text-[10px]',
     lg: 'text-xs',
   }[size];
+
+  const titleColor = inverted
+    ? 'text-white'
+    : 'text-slate-900 dark:text-white';
+
+  const sublineColor = inverted
+    ? 'text-slate-400'
+    : 'text-slate-400 dark:text-slate-500';
 
   const content = (
     <div className="flex items-center gap-2.5 sm:gap-3 group select-none">
@@ -61,13 +71,13 @@ export function BrandLogo({
       {/* Typography & Subline */}
       <div className="flex flex-col min-w-0">
         <span
-          className={`${titleSize} text-slate-900 dark:text-white transition-colors duration-200 truncate leading-tight`}
+          className={`${titleSize} ${titleColor} transition-colors duration-200 truncate leading-tight`}
         >
-          Pak Petrol <span className="text-emerald-600 dark:text-emerald-400">Price</span>
+          Pak Petrol <span className="text-emerald-500 dark:text-emerald-400">Price</span>
         </span>
         {showDomain && (
           <span
-            className={`${sublineSize} font-mono text-slate-400 dark:text-slate-500 tracking-wide mt-0.5 leading-none`}
+            className={`${sublineSize} font-mono ${sublineColor} tracking-wide mt-0.5 leading-none`}
           >
             pakpetrolprice.pk
           </span>
