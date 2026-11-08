@@ -371,13 +371,21 @@ export async function GET(request: NextRequest) {
     // Safe outside Next.js request context
   }
 
-  return NextResponse.json({
-    status: 'ok',
-    timestamp: nowIso,
-    checkedCount: productsToCheck.length,
-    scrapedRates: scraped,
-    updated,
-    recordsIngested: insertedRecords.length,
-    insertedRecords,
-  });
+  return NextResponse.json(
+    {
+      status: 'ok',
+      timestamp: nowIso,
+      checkedCount: productsToCheck.length,
+      scrapedRates: scraped,
+      updated,
+      recordsIngested: insertedRecords.length,
+      insertedRecords,
+    },
+    {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+        'Netlify-CDN-Cache-Control': 'no-store',
+      },
+    }
+  );
 }

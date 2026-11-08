@@ -2,12 +2,14 @@ name: Scheduled Fuel Price Crawler
 
 on:
   schedule:
-    # Runs every 6 hours aligned with 12:00 AM Midnight Pakistan Standard Time (UTC+5):
-    # 19:00 UTC = 12:00 AM Midnight PKT (Daily midnight cycle)
-    # 01:00 UTC = 06:00 AM PKT (6 hours later)
-    # 07:00 UTC = 12:00 PM Noon PKT (6 hours later)
-    # 13:00 UTC = 06:00 PM PKT (6 hours later)
-    - cron: '0 1,7,13,19 * * *'
+    # 1. High-Frequency Overnight Crawler:
+    # Runs EVERY 5 MINUTES daily between 11:00 PM and 05:00 AM Pakistan Standard Time (PKT)
+    # (11:00 PM PKT = 18:00 UTC, 05:00 AM PKT = 00:00 UTC)
+    - cron: '*/5 18-23,0 * * *'
+
+    # 2. Daytime Baseline Crawler:
+    # Runs during the day (06:00 AM, 12:00 PM Noon, 06:00 PM PKT = 01:00, 07:00, 13:00 UTC)
+    - cron: '0 1,7,13 * * *'
   workflow_dispatch: # Allows instant manual trigger anytime from GitHub Actions tab
 
 jobs:
