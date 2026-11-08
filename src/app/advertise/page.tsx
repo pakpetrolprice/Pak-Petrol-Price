@@ -253,7 +253,7 @@ export default function AdvertisePage() {
               href="/contact"
               className="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all text-center"
             >
-              Request Rate Card →
+              Contact Us →
             </Link>
           </div>
         </div>
