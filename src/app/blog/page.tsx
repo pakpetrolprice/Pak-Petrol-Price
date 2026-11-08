@@ -56,6 +56,18 @@ export default async function BlogPage() {
         </div>
       </div>
 
+      {/* Empty State */}
+      {posts.length === 0 && (
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-slate-800 p-12 text-center space-y-2">
+          <p className="font-bold text-slate-900 dark:text-white text-base">
+            No articles published yet
+          </p>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+            Check back soon for the latest petroleum analysis, market insights, and regulatory announcements.
+          </p>
+        </div>
+      )}
+
       {/* Featured Primary Story */}
       {featuredPost && (
         <section aria-label="Featured Story" className="w-full">
