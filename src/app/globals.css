@@ -93,21 +93,27 @@ button, a, input, select, textarea {
 }
 
 /* Completely eliminate any Netlify badge, drawer, watermark, or injected iframe */
-#netlify-drawer,
-[data-netlify-drawer],
+site-badge,
+netlify-badge,
 netlify-drawer,
-.netlify-badge,
-[class*="netlify-badge"],
-[id*="netlify-badge"],
-[id*="netlify-drawer"],
-[class*="netlify-drawer"],
+#netlify-drawer,
+#netlify-badge,
+[data-netlify-drawer],
+[data-netlify-badge],
+[id*="netlify"],
+[class*="netlify"],
+[class*="site-badge"],
 iframe[src*="netlify"],
 iframe[id*="netlify"],
 div[data-netlify-badge],
+div[id*="netlify"],
+div[class*="netlify"],
 a[href*="netlify.com/?utm_campaign"],
 a[href*="netlify.new/?utm_campaign"],
 a[href*="netlify.com"][class*="badge"],
-div[style*="z-index: 2147483647"][style*="bottom"] {
+div[style*="z-index: 2147483647"],
+div[style*="z-index: 999999"],
+div[style*="z-index: 1000000"] {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -116,6 +122,6 @@ div[style*="z-index: 2147483647"][style*="bottom"] {
   height: 0 !important;
   position: absolute !important;
   clip: rect(0, 0, 0, 0) !important;
-  z-index: -999999 !important;
+  z-index: -99999999 !important;
 }
 
