@@ -9,12 +9,14 @@ import { HOME_FAQS } from '@/lib/faq-data';
 import { HistoricalTable } from '@/components/HistoricalTable';
 import { PriceChart } from '@/components/PriceChart';
 import { AdPlacement } from '@/components/AdPlacement';
+import { WordPressService } from '@/lib/wordpress';
 
 export default async function HomePage() {
   const products = await FuelRepository.getActiveProducts();
   const latestPrices = await FuelRepository.getLatestPrices();
   const petrolHistory = await FuelRepository.getProductHistory('petrol');
   const recentRevisions = await FuelRepository.getAllApprovedRevisions();
+  const latestArticles = await WordPressService.getPosts(3);
 
   const petrol = products.find(p => p.id === 'petrol');
   const otherFuels = products.filter(p => p.id !== 'petrol');
@@ -234,7 +236,90 @@ export default async function HomePage() {
         </section>
 
         {/* ============================================================ */}
-        {/* ZONE 5: KNOWLEDGE BASE & FREQUENTLY ASKED QUESTIONS          */}
+        {/* ZONE 5: HEADLESS CMS BLOG - MARKET INSIGHTS & ANALYSIS      */}
+        {/* ============================================================ */}
+        <section aria-label="Latest Fuel Market Insights" className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200/80 dark:border-slate-800/80 pb-3">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 font-mono text-[10px] font-bold uppercase tracking-wider">
+                  Market Intelligence
+                </span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white tracking-tight">
+                Latest Fuel Market News &amp; Regulatory Insights
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                Expert analysis of OGRA circulars, import parity pricing, and domestic fuel economy strategies.
+              </p>
+            </div>
+            <Link
+              href="/blog"
+              className="text-xs sm:text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 inline-flex items-center gap-1 transition-colors shrink-0"
+            >
+              <span>All Market Insights</span>
+              <span>→</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {latestArticles.map(article => (
+              <article
+                key={article.id}
+                className="group bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200/80 dark:border-slate-800 overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="relative h-44 w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+                    <img
+                      src={article.featuredImage}
+                      alt={article.featuredImageAlt}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-slate-950/80 text-white backdrop-blur-sm border border-white/10">
+                        {article.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-5 space-y-2">
+                    <div className="flex items-center gap-2 text-[11px] font-mono text-slate-400">
+                      <span>{article.formattedDate}</span>
+                      <span>·</span>
+                      <span>{article.readTime}</span>
+                    </div>
+
+                    <Link href={`/blog/${article.slug}`}>
+                      <h3 className="font-bold text-slate-950 dark:text-white text-base tracking-tight leading-snug group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-2">
+                        {article.title}
+                      </h3>
+                    </Link>
+
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+                      {article.excerpt}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-5 pt-0 border-t border-slate-100 dark:border-slate-800/80 mt-3 flex items-center justify-between text-xs">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium text-[11px]">
+                    {article.author}
+                  </span>
+                  <Link
+                    href={`/blog/${article.slug}`}
+                    className="font-bold text-emerald-700 dark:text-emerald-400 hover:underline inline-flex items-center gap-1"
+                  >
+                    <span>Read Article →</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* ZONE 6: KNOWLEDGE BASE & FREQUENTLY ASKED QUESTIONS          */}
         {/* ============================================================ */}
         <section aria-label="Frequently Asked Questions" className="w-full">
           <FAQSection

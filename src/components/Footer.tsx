@@ -74,6 +74,11 @@ export function Footer() {
                   Diesel Historical Archive
                 </Link>
               </li>
+              <li>
+                <Link href="/blog" className="text-slate-400 hover:text-white transition">
+                  Market Insights &amp; Blog
+                </Link>
+              </li>
             </ul>
           </div>
 

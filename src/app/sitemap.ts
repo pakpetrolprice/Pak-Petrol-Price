@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next';
+import { WordPressService } from '@/lib/wordpress';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://pakpetrolprice.pk';
   const currentDate = new Date().toISOString();
 
-  const routes: Array<{
+  const staticRoutes: Array<{
     route: string;
     changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
     priority: number;
@@ -20,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: '/petrol-price-history', changeFrequency: 'daily', priority: 0.85 },
     { route: '/diesel-price-history', changeFrequency: 'daily', priority: 0.85 },
     { route: '/fuel-price-changes', changeFrequency: 'daily', priority: 0.85 },
+    { route: '/blog', changeFrequency: 'daily', priority: 0.85 },
     { route: '/advertise', changeFrequency: 'monthly', priority: 0.7 },
     { route: '/about', changeFrequency: 'monthly', priority: 0.6 },
     { route: '/contact', changeFrequency: 'monthly', priority: 0.6 },
@@ -28,10 +30,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: '/disclaimer', changeFrequency: 'monthly', priority: 0.5 },
   ];
 
-  return routes.map(item => ({
+  const staticEntries: MetadataRoute.Sitemap = staticRoutes.map(item => ({
     url: `${baseUrl}${item.route}`,
     lastModified: currentDate,
     changeFrequency: item.changeFrequency,
     priority: item.priority,
   }));
+
+  try {
+    const postSlugs = await WordPressService.getAllSlugs();
+    const blogEntries: MetadataRoute.Sitemap = postSlugs.map(slug => ({
+      url: `${baseUrl}/blog/${slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    }));
+    return [...staticEntries, ...blogEntries];
+  } catch {
+    return staticEntries;
+  }
 }

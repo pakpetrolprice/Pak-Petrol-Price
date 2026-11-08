@@ -17,6 +17,7 @@ export function Header() {
     { href: '/petrol-price-history', label: 'Historical Trend' },
     { href: '/fuel-price-changes', label: 'Audit Ledger' },
     { href: '/petrol-calculator', label: 'Calculators' },
+    { href: '/blog', label: 'Blog' },
   ];
 
   const isLinkActive = (href: string) => {
@@ -25,6 +26,9 @@ export function Header() {
     }
     if (href === '/petrol-price-history') {
       return pathname === '/petrol-price-history' || pathname === '/diesel-price-history';
+    }
+    if (href === '/blog') {
+      return pathname.startsWith('/blog');
     }
     return pathname === href;
   };
