@@ -11,13 +11,14 @@ export function Header() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: '/', label: 'Rates' },
+    { href: '/', label: 'Home' },
     { href: '/petrol-price-in-pakistan', label: 'Petrol' },
     { href: '/diesel-price-in-pakistan', label: 'Diesel' },
-    { href: '/petrol-price-history', label: 'History' },
-    { href: '/fuel-price-changes', label: 'Changes' },
+    { href: '/hi-octane-price-in-pakistan', label: 'Hi-Octane' },
     { href: '/petrol-calculator', label: 'Calculators' },
+    { href: '/petrol-price-history', label: 'History' },
     { href: '/blog', label: 'Blog' },
+    { href: '/about', label: 'About' },
   ];
 
   const isLinkActive = (href: string) => {
@@ -25,7 +26,7 @@ export function Header() {
       return pathname === '/';
     }
     if (href === '/petrol-price-history') {
-      return pathname === '/petrol-price-history' || pathname === '/diesel-price-history';
+      return pathname === '/petrol-price-history' || pathname === '/diesel-price-history' || pathname === '/fuel-price-changes';
     }
     if (href === '/blog') {
       return pathname.startsWith('/blog');
@@ -35,7 +36,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full transition-colors">
-      {/* Clean Status Bar */}
+      {/* Status Bar */}
       <div className="bg-slate-950 text-slate-300 border-b border-slate-800 text-[11px] font-medium py-1 px-3 sm:px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0">
@@ -64,14 +65,14 @@ export function Header() {
             </div>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-1 bg-slate-100/70 dark:bg-slate-900/70 p-1 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+            <nav className="hidden lg:flex items-center gap-0.5 bg-slate-100/70 dark:bg-slate-900/70 p-1 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
               {navLinks.map(link => {
                 const active = isLinkActive(link.href);
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-tight transition-all duration-150 select-none ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold tracking-tight transition-all duration-150 select-none ${
                       active
                         ? 'bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-xs border border-slate-200/80 dark:border-slate-700/80'
                         : 'text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-800/50'
@@ -128,6 +129,13 @@ export function Header() {
                   </Link>
                 );
               })}
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="min-h-[44px] flex items-center px-4 py-2.5 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+              >
+                Contact
+              </Link>
             </div>
           )}
         </div>
