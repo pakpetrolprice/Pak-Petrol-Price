@@ -36,29 +36,22 @@ export default async function BlogPage() {
           </Link>
           <span className="text-slate-400 text-xs">/</span>
           <span className="text-xs font-mono font-bold text-slate-900 dark:text-white">
-            Market Insights &amp; News
+            Blog &amp; News
           </span>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 font-mono text-[11px] font-bold uppercase tracking-wider">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 font-mono text-[11px] font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Headless Editorial Feed</span>
+              Latest Updates
             </div>
             <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
-              Fuel Market Insights &amp; Regulatory Analysis
+              Fuel News &amp; Market Insights
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
-              In-depth coverage of OGRA fortnightly formulas, refinery parity benchmarks, global Brent crude trends, and consumer fuel guidance.
+              Timely analysis and news on petroleum pricing, government circulars, and consumer guidance in Pakistan.
             </p>
-          </div>
-
-          <div className="px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 self-start md:self-auto shrink-0 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span className="text-xs font-mono text-slate-600 dark:text-slate-400">
-              Live Edge Sync · Auto-Invalidated
-            </span>
           </div>
         </div>
       </div>

@@ -110,26 +110,26 @@ export function HistoricalTable({
       {/* Table Container */}
       {filteredRecords.length === 0 ? (
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-8 text-center text-slate-500 dark:text-slate-400 text-sm font-medium">
-          No verified audit records found for {PRODUCT_LABELS[selectedFuel] || 'this fuel'}.
+          No records found for {PRODUCT_LABELS[selectedFuel] || 'this fuel'}.
         </div>
       ) : (
         <div className="bg-white dark:bg-slate-900/90 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-xs overflow-hidden transition-colors w-full">
           {/* Mobile Swipe Hint */}
           <div className="sm:hidden px-4 py-2 bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
-            <span>Swipe horizontally for full audit trail</span>
-            <span className="text-emerald-600 dark:text-emerald-400 font-bold">⇄ Scroll</span>
+            <span>Scroll horizontally to view full table</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-bold">⇄</span>
           </div>
 
           <div className="overflow-x-auto w-full -webkit-overflow-scrolling-touch">
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
                 <tr className="bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200/80 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-mono text-[10px] sm:text-[11px] uppercase tracking-wider">
-                  {showProductColumn && <th className="py-3.5 px-4">Fuel Grade</th>}
-                  <th className="py-3.5 px-4">Effective Date</th>
-                  <th className="py-3.5 px-4">Ceiling Rate (PKR)</th>
-                  <th className="py-3.5 px-4">Revision Delta</th>
-                  <th className="py-3.5 px-4">Official Gazette ID</th>
-                  <th className="py-3.5 px-4">Status</th>
+                  {showProductColumn && <th className="py-3 px-4">Fuel</th>}
+                  <th className="py-3 px-4">Effective Date</th>
+                  <th className="py-3 px-4">Price (PKR)</th>
+                  <th className="py-3 px-4">Change</th>
+                  <th className="py-3 px-4">Notification Ref</th>
+                  <th className="py-3 px-4">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-800 dark:text-slate-200">

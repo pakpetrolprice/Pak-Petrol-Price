@@ -60,30 +60,17 @@ export function BrandLogo({
 
       {/* Typography & Subline */}
       <div className="flex flex-col min-w-0">
-        <div className="flex items-center gap-1.5 leading-none">
-          <span
-            className={`${titleSize} text-slate-900 dark:text-white transition-colors duration-200 truncate`}
-          >
-            Pak Petrol <span className="text-emerald-600 dark:text-emerald-400">Price</span>
-          </span>
-          <span className="inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-bold uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80">
-            PKR
-          </span>
-        </div>
+        <span
+          className={`${titleSize} text-slate-900 dark:text-white transition-colors duration-200 truncate leading-tight`}
+        >
+          Pak Petrol <span className="text-emerald-600 dark:text-emerald-400">Price</span>
+        </span>
         {showDomain && (
-          <div className="flex items-center gap-1.5 mt-1 leading-none">
-            <span
-              className={`${sublineSize} font-mono font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase`}
-            >
-              National Fuel Benchmark
-            </span>
-            <span className="w-1 h-1 rounded-full bg-emerald-500" />
-            <span
-              className={`${sublineSize} font-mono font-bold text-emerald-700 dark:text-emerald-400 uppercase`}
-            >
-              OGRA Notified
-            </span>
-          </div>
+          <span
+            className={`${sublineSize} font-mono text-slate-400 dark:text-slate-500 tracking-wide mt-0.5 leading-none`}
+          >
+            pakpetrolprice.pk
+          </span>
         )}
       </div>
     </div>

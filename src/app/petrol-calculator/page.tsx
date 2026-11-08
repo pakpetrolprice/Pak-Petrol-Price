@@ -21,32 +21,22 @@ export default async function CalculatorPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-8 w-full">
 
-      <div className="space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-black tracking-wide">
-          <span>⚡ Live Pakistani Fuel Rate Tools</span>
+      <div className="space-y-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4">
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 font-mono text-[11px] font-bold">
+            Budget Tools
+          </span>
+          <span className="text-xs text-slate-400">·</span>
+          <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+            Current Rates
+          </span>
         </div>
-        <h1 className="text-2xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
-          Fuel Tank Fill-Up &amp; Journey Trip Cost Calculators
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
+          Fuel Cost &amp; Trip Calculators
         </h1>
-        <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 max-w-4xl leading-relaxed font-medium">
-          Plan fuel budgets for Pakistani motorbikes, hatchbacks, sedans, SUVs, and commercial vehicles with current officially verified OGRA petroleum prices.
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
+          Estimate tank fill-up expenses or calculate fuel costs for your highway and commute journeys.
         </p>
-        <div className="flex flex-wrap items-center gap-2 pt-1">
-          <a
-            href="#tank-fill-calculator"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 border border-slate-200 dark:border-slate-700 transition"
-          >
-            <span>⛽ 1. Fuel Tank Fill-Up Calculator</span>
-            <span>↓</span>
-          </a>
-          <a
-            href="#trip-cost-calculator"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 border border-slate-200 dark:border-slate-700 transition"
-          >
-            <span>⚡ 2. Trip &amp; Distance Fuel Calculator</span>
-            <span>↓</span>
-          </a>
-        </div>
       </div>
 
       {/* Sequential Full-Width Stacked Calculators */}

@@ -11,11 +11,11 @@ export function Header() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: '/', label: 'Live Rates' },
+    { href: '/', label: 'Rates' },
     { href: '/petrol-price-in-pakistan', label: 'Petrol' },
     { href: '/diesel-price-in-pakistan', label: 'Diesel' },
-    { href: '/petrol-price-history', label: 'Historical Trend' },
-    { href: '/fuel-price-changes', label: 'Audit Ledger' },
+    { href: '/petrol-price-history', label: 'History' },
+    { href: '/fuel-price-changes', label: 'Changes' },
     { href: '/petrol-calculator', label: 'Calculators' },
     { href: '/blog', label: 'Blog' },
   ];
@@ -35,31 +35,21 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full transition-colors">
-      {/* Institutional Market Heartbeat Bar */}
-      <div className="bg-slate-950 text-slate-300 border-b border-slate-800 text-[11px] font-medium py-1.5 px-3 sm:px-6">
+      {/* Clean Status Bar */}
+      <div className="bg-slate-950 text-slate-300 border-b border-slate-800 text-[11px] font-medium py-1 px-3 sm:px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0">
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="font-semibold text-white tracking-wide truncate">
-              National Petroleum Rate Feed
-            </span>
-            <span className="hidden md:inline-block text-slate-500">|</span>
-            <span className="hidden md:inline-block text-slate-400 font-mono text-[10px]">
-              OGRA Notified · Ex-Depot Maximum Retail Benchmark
+            <span className="text-white font-medium truncate">
+              Today&apos;s Official Rates · Regulated by OGRA
             </span>
           </div>
 
-          <div className="flex items-center gap-3 text-slate-400 shrink-0 text-[11px]">
-            <span className="hidden sm:inline-flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-              <span>Fortnightly Cycle: <strong>Active</strong></span>
-            </span>
-            <span className="text-emerald-400 font-mono font-semibold text-[10px] bg-emerald-950/60 border border-emerald-800/80 px-2 py-0.5 rounded">
-              PKT (UTC+5)
-            </span>
+          <div className="flex items-center gap-2 text-slate-400 shrink-0 text-[11px] font-mono">
+            <span>Pakistan Standard Time (PKT)</span>
           </div>
         </div>
       </div>
