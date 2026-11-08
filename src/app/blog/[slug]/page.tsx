@@ -107,7 +107,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
           </Link>
           <span>/</span>
           <Link href="/blog" className="hover:text-emerald-600 transition">
-            Market Insights
+            Blog
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white truncate max-w-[200px] sm:max-w-xs font-bold">
@@ -183,7 +183,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
               href="/blog"
               className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-200 transition"
             >
-              <span>← Back to all Insights &amp; Articles</span>
+              <span>← Back to Blog</span>
             </Link>
 
             <Link

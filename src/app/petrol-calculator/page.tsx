@@ -22,6 +22,13 @@ export default async function CalculatorPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-8 w-full">
 
       <div className="space-y-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4">
+        <div className="flex items-center gap-2 text-xs font-mono text-slate-500 mb-2">
+          <Link href="/" className="hover:text-emerald-600 transition">
+            Home
+          </Link>
+          <span>/</span>
+          <span className="text-slate-900 dark:text-white font-bold">Calculators</span>
+        </div>
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 font-mono text-[11px] font-bold">
             Budget Tools

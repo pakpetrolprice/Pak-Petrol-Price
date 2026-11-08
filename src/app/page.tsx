@@ -218,17 +218,17 @@ export default async function HomePage() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200/80 dark:border-slate-800/80 pb-3">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white tracking-tight">
-                  Fuel News &amp; Updates
+                  Latest from the Blog
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                  Latest updates on petroleum pricing, government circulars, and market trends.
+                  Guides, updates, and news on fuel prices in Pakistan.
                 </p>
               </div>
               <Link
                 href="/blog"
                 className="text-xs sm:text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 inline-flex items-center gap-1 transition-colors shrink-0"
               >
-                <span>View All Articles</span>
+                <span>View All Posts</span>
                 <span>→</span>
               </Link>
             </div>

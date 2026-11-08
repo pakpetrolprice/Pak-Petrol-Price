@@ -30,27 +30,27 @@ export default async function BlogPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10 sm:space-y-14 w-full">
       {/* Editorial Header */}
       <div className="pb-6 border-b border-slate-200/80 dark:border-slate-800/80 space-y-3">
-        <div className="flex items-center gap-2">
-          <Link href="/" className="text-xs font-mono text-slate-500 hover:text-emerald-600 transition">
+        <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
+          <Link href="/" className="hover:text-emerald-600 transition">
             Home
           </Link>
-          <span className="text-slate-400 text-xs">/</span>
-          <span className="text-xs font-mono font-bold text-slate-900 dark:text-white">
-            Blog &amp; News
+          <span>/</span>
+          <span className="text-slate-900 dark:text-white font-bold">
+            Blog
           </span>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div className="space-y-1.5">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 font-mono text-[11px] font-bold">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Latest Updates
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              Articles &amp; News
             </div>
-            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
-              Fuel News &amp; Market Insights
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 dark:text-white tracking-tight">
+              Blog
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
-              Timely analysis and news on petroleum pricing, government circulars, and consumer guidance in Pakistan.
+              Latest news, guides, and updates on petroleum pricing in Pakistan.
             </p>
           </div>
         </div>

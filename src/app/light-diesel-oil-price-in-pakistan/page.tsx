@@ -29,9 +29,23 @@ export default async function LightDieselOilPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-6 sm:space-y-8 w-full">
 
       {/* Header */}
-      <div className="space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/90 border border-emerald-300 dark:border-emerald-800 text-emerald-950 dark:text-emerald-300 text-xs font-bold tracking-wide">
-          <span>● Regulated Fuel Rate · Light Diesel Oil (LDO)</span>
+      <div className="space-y-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4">
+        <div className="flex items-center gap-2 text-xs font-mono text-slate-500 mb-2">
+          <Link href="/" className="hover:text-emerald-600 transition">
+            Home
+          </Link>
+          <span>/</span>
+          <span className="text-slate-900 dark:text-white font-bold">Light Diesel</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 font-mono text-[11px] font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Live Rate
+          </span>
+          <span className="text-xs text-slate-400">·</span>
+          <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+            Light Diesel Oil (LDO)
+          </span>
         </div>
         <h1 className="text-2xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
           Light Diesel Price in Pakistan Today
