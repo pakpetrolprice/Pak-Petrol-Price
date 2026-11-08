@@ -137,8 +137,8 @@ function formatPostDate(dateStr: string): string {
 
 export class WordPressService {
   private static getApiUrl(): string | null {
-    const url = process.env.WORDPRESS_API_URL || process.env.NEXT_PUBLIC_WORDPRESS_URL;
-    if (!url || url.includes('your-wordpress-site') || url.includes('cms.pakpetrolprice.pk')) {
+    const url = process.env.WORDPRESS_API_URL || process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://cms.pakpetrolprice.pk/wp-json/wp/v2';
+    if (!url || url.includes('your-wordpress-site')) {
       return null;
     }
     return url.replace(/\/$/, '');
@@ -172,17 +172,17 @@ export class WordPressService {
         return SAMPLE_POSTS.slice(0, limit);
       }
 
-      return wpPosts.map((post: any): WordPressPost => {
+      const livePosts = wpPosts.map((post: any): WordPressPost => {
         const featuredMedia = post._embedded?.['wp:featuredmedia']?.[0];
         const terms = post._embedded?.['wp:term']?.[0];
-        const author = post._embedded?.['author']?.[0]?.name || 'Editorial Team';
+        const author = post._embedded?.['author']?.[0]?.name || 'PakPetrolPrice Editorial';
         const rawContent = post.content?.rendered || '';
 
         return {
           id: post.id,
           slug: post.slug,
           title: post.title?.rendered || 'Untitled Article',
-          excerpt: sanitizeHtml(post.excerpt?.rendered || '').slice(0, 220) + '...',
+          excerpt: sanitizeHtml(post.excerpt?.rendered || '').slice(0, 220) + (post.excerpt?.rendered ? '...' : ''),
           content: rawContent,
           date: post.date,
           formattedDate: formatPostDate(post.date),
@@ -195,6 +195,16 @@ export class WordPressService {
           featuredImageAlt: featuredMedia?.alt_text || post.title?.rendered || 'Fuel market article',
         };
       });
+
+      // If live WordPress has fewer posts than requested limit, append sample guides so grid is complete
+      if (livePosts.length < limit) {
+        const remainingNeeded = limit - livePosts.length;
+        const liveSlugs = new Set(livePosts.map(p => p.slug));
+        const filler = SAMPLE_POSTS.filter(s => !liveSlugs.has(s.slug)).slice(0, remainingNeeded);
+        return [...livePosts, ...filler];
+      }
+
+      return livePosts.slice(0, limit);
     } catch (error) {
       console.warn('[WordPress] Failed to connect to API, using fallback data:', error);
       return SAMPLE_POSTS.slice(0, limit);
