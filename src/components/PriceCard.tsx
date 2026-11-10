@@ -31,6 +31,18 @@ export function PriceCard({ product, record, featured = false }: PriceCardProps)
     timeZone: 'Asia/Karachi',
   }).format(new Date(record.effectiveStart));
 
+  const verifiedDate = record.verificationTimestamp ? new Date(record.verificationTimestamp) : null;
+  const formattedVerifiedTime = verifiedDate && !isNaN(verifiedDate.getTime())
+    ? new Intl.DateTimeFormat('en-PK', {
+        day: 'numeric',
+        month: 'short',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Karachi',
+      }).format(verifiedDate)
+    : null;
+
   // ==========================================
   // 1. PRIMARY FEATURED HERO CARD (PETROL)
   // ==========================================
@@ -38,12 +50,22 @@ export function PriceCard({ product, record, featured = false }: PriceCardProps)
     return (
       <div className="relative bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xs p-6 sm:p-8 transition-all overflow-hidden w-full">
         {/* Top Status & Unit Row */}
-        <div className="flex items-center justify-between gap-3 pb-5 border-b border-slate-100 dark:border-slate-800/80">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-slate-100 dark:border-slate-800/80">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/80 dark:border-emerald-800/80 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>Official OGRA Rate</span>
             </span>
+
+            {formattedVerifiedTime && (
+              <span
+                title={`Crawler verified live at ${formattedVerifiedTime} PKT`}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50/80 dark:bg-emerald-950/60 border border-emerald-200/70 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-medium shadow-2xs"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Verified: {formattedVerifiedTime}</span>
+              </span>
+            )}
           </div>
 
           <span className="text-xs font-mono font-medium text-slate-400 dark:text-slate-500">
@@ -133,7 +155,7 @@ export function PriceCard({ product, record, featured = false }: PriceCardProps)
     <div className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 sm:p-5 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 flex flex-col justify-between w-full">
       <div>
         {/* Product Name & Unit */}
-        <div className="flex items-center justify-between gap-2 mb-2">
+        <div className="flex items-center justify-between gap-2 mb-1.5">
           <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base tracking-tight truncate group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
             {product.displayName}
           </h3>
@@ -141,6 +163,19 @@ export function PriceCard({ product, record, featured = false }: PriceCardProps)
             /{product.unit}
           </span>
         </div>
+
+        {/* Small Verified Time Badge */}
+        {formattedVerifiedTime && (
+          <div className="mb-2">
+            <span
+              title={`Crawler verified live at ${formattedVerifiedTime} PKT`}
+              className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/70 dark:border-emerald-800/60 text-[10px] font-mono font-medium text-emerald-800 dark:text-emerald-300"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 animate-pulse" />
+              <span>Verified: {formattedVerifiedTime}</span>
+            </span>
+          </div>
+        )}
 
         {/* Price Display */}
         <div className="my-2 flex items-baseline gap-1">

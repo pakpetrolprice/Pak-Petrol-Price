@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { FuelRepository } from '@/lib/fuel-repository';
 
 interface ScrapedFuelRates {
@@ -29,6 +29,9 @@ interface ScrapedFuelRates {
  */
 async function scrapeAllFuelProducts(): Promise<ScrapedFuelRates> {
   const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
+  const currentYear = new Date().getFullYear();
+  const ograUrl = `https://price.ogra.org.pk/?section=oil-notified&category=notified-petroleum-prices&date_from=${currentYear}-01-01&date_to=${currentYear}-12-31`;
+
   const result: ScrapedFuelRates = {
     effectiveDate: new Date().toISOString(),
     sourceUrl: 'https://price.ogra.org.pk/?category=notified-petroleum-prices&section=oil-notified',
@@ -41,7 +44,7 @@ async function scrapeAllFuelProducts(): Promise<ScrapedFuelRates> {
       headers: { 'User-Agent': userAgent },
       cache: 'no-store',
     }),
-    fetch('https://price.ogra.org.pk/?category=notified-petroleum-prices&section=oil-notified', {
+    fetch(ograUrl, {
       headers: { 'User-Agent': userAgent },
       cache: 'no-store',
     }),
@@ -59,7 +62,9 @@ async function scrapeAllFuelProducts(): Promise<ScrapedFuelRates> {
   if (ograResult.status === 'fulfilled' && ograResult.value.ok) {
     try {
       const ograHtml = await ograResult.value.text();
-      const pubMatch = ograHtml.match(/<span class="current-site-publication-title">([^<]+)<\/span>/i);
+      const pubMatch =
+        ograHtml.match(/<span class="current-site-publication-title">([^<]+)<\/span>/i) ||
+        ograHtml.match(/<article class="current-site-publication-row"[\s\S]*?<span[^>]*>([^<]+)<\/span>/i);
       const fileMatch = ograHtml.match(/<a href="(\/document\/\d+\/file\?lang=\w+)"/i);
       if (pubMatch) {
         result.notificationTitle = pubMatch[1].trim();
@@ -356,6 +361,7 @@ export async function GET(request: NextRequest) {
   // Purge Next.js cache so updates propagate instantly across all pages and layouts
   try {
     revalidatePath('/', 'layout');
+    revalidateTag('price_records', 'max');
     revalidatePath('/');
     revalidatePath('/petrol-price-in-pakistan');
     revalidatePath('/diesel-price-in-pakistan');

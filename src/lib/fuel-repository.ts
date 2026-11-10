@@ -68,6 +68,7 @@ export const INITIAL_PRICE_RECORDS: PriceRecord[] = ARCHIVE_DATA as PriceRecord[
 export class FuelRepository {
   private static cachedRecords: PriceRecord[] = [...INITIAL_PRICE_RECORDS];
   private static lastFetchTime = 0;
+  private static lastAutoTrigger = 0;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private static mapDbRecord(r: any): PriceRecord {
@@ -114,7 +115,7 @@ export class FuelRepository {
             apikey: anonKey,
             Authorization: `Bearer ${anonKey}`,
           },
-          next: { revalidate: 60 },
+          next: { revalidate: 60, tags: ['price_records'] },
         });
 
         if (res.ok) {
@@ -122,6 +123,24 @@ export class FuelRepository {
           if (Array.isArray(data) && data.length > 0) {
             this.cachedRecords = data.map(this.mapDbRecord);
             this.lastFetchTime = now;
+
+            // Self-healing automatic crawl check (runs every 2 hours if external cron was delayed)
+            const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
+            const latestVerified = this.cachedRecords[0]?.verificationTimestamp;
+            const timeSinceVerified = latestVerified ? now - new Date(latestVerified).getTime() : TWO_HOURS_MS + 1;
+
+            if (timeSinceVerified > TWO_HOURS_MS && now - this.lastAutoTrigger > 15 * 60 * 1000) {
+              this.lastAutoTrigger = now;
+              const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (typeof window === 'undefined' ? 'http://localhost:3000' : '');
+              const cronSecret = process.env.CRON_SECRET || '695ad9c1f065fba1afa78c9a0eb5f4cc0c675509aec0f64b';
+              if (siteUrl) {
+                fetch(`${siteUrl}/api/cron/check-prices?key=${cronSecret}`, {
+                  headers: { Authorization: `Bearer ${cronSecret}` },
+                  cache: 'no-store',
+                }).catch(e => console.warn('Self-healing background price check trigger error:', e));
+              }
+            }
+
             return this.cachedRecords;
           }
         }
