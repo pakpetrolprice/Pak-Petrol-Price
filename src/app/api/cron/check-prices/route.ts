@@ -89,25 +89,25 @@ async function scrapeAllFuelProducts(): Promise<ScrapedFuelRates> {
 
         // Regular Petrol (Premier Euro 5)
         if (/PREMIER\s*EURO\s*5/i.test(text) && !/OCTANE/i.test(text) && !result.petrol) {
-          const m = text.match(/(?:Rs\.?|PKR)\s*(\d{2,3}(?:\.\d{1,2})?)/i);
+          const m = text.match(/(?:Rs\.?|PKR)?\s*(\d{2,3}(?:\.\d{1,2})?)/i);
           if (m) result.petrol = parseFloat(m[1]);
         }
 
         // High Speed Diesel
         if (/(?:HI-?CETANE\s*DIESEL|DIESEL\s*EURO\s*5|HSD)/i.test(text) && !result.diesel) {
-          const m = text.match(/(?:Rs\.?|PKR)\s*(\d{2,3}(?:\.\d{1,2})?)/i);
+          const m = text.match(/(?:Rs\.?|PKR)?\s*(\d{2,3}(?:\.\d{1,2})?)/i);
           if (m) result.diesel = parseFloat(m[1]);
         }
 
         // Kerosene (SKO)
         if (/\bSKO\b|KEROSENE/i.test(text) && !result.kerosene) {
-          const m = text.match(/(?:Rs\.?|PKR)\s*(\d{2,3}(?:\.\d{1,2})?)/i);
+          const m = text.match(/(?:Rs\.?|PKR)?\s*(\d{2,3}(?:\.\d{1,2})?)/i);
           if (m) result.kerosene = parseFloat(m[1]);
         }
 
         // Light Diesel Oil (LDO)
         if (/\bLDO\b|LIGHT\s*DIESEL/i.test(text) && !result.ldo) {
-          const m = text.match(/(?:Rs\.?|PKR)\s*(\d{2,3}(?:\.\d{1,2})?)/i);
+          const m = text.match(/(?:Rs\.?|PKR)?\s*(\d{2,3}(?:\.\d{1,2})?)/i);
           if (m) result.ldo = parseFloat(m[1]);
         }
 
@@ -168,7 +168,7 @@ async function scrapeAllFuelProducts(): Promise<ScrapedFuelRates> {
   }
 
   if (!result.lpg) {
-    result.lpg = 279.34;
+    result.lpg = 294.08;
   }
 
   return result;

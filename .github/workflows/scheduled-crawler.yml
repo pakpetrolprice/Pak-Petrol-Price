@@ -2,14 +2,12 @@ name: Scheduled Fuel Price Crawler
 
 on:
   schedule:
-    # 1. Continuous 2-Hour Fuel Crawler:
-    # Runs every 2 hours around the clock at minute 15 (01:15, 03:15, 05:15, etc. PKT / 20:15, 22:15, 00:15, etc. UTC)
-    - cron: '15 */2 * * *'
-
-    # 2. High-Frequency Overnight Notification Watcher:
-    # Runs every 10 minutes between 11:00 PM and 05:00 AM Pakistan Standard Time (PKT)
-    # when government price revision notifications are typically released.
-    - cron: '*/10 18-23,0 * * *'
+    # Fixed 4-Time Daily Cycle (Pakistan Standard Time — PKT):
+    # 1. 12:00 AM Night (19:00 UTC)
+    # 2. 06:00 AM Morning (01:00 UTC)
+    # 3. 12:00 PM Noon (07:00 UTC)
+    # 4. 06:00 PM Evening (13:00 UTC)
+    - cron: '0 1,7,13,19 * * *'
   workflow_dispatch: # Allows instant manual trigger anytime from GitHub Actions tab
 
 jobs:
