@@ -17,13 +17,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Fuel Price Crawler Endpoint
+        env:
+          INPUT_SITE_URL: ${{ secrets.SITE_URL }}
+          INPUT_NETLIFY_URL: ${{ secrets.NETLIFY_SITE_URL }}
+          INPUT_CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          TARGET_URL="${{ secrets.SITE_URL || secrets.NETLIFY_SITE_URL || 'https://pakpetrolprice.pk' }}"
+          TARGET_URL="$INPUT_SITE_URL"
+          if [ -z "$TARGET_URL" ]; then
+            TARGET_URL="$INPUT_NETLIFY_URL"
+          fi
+          if [ -z "$TARGET_URL" ]; then
+            TARGET_URL="https://pakpetrolprice.pk"
+          fi
           # Strip trailing slash if present
           TARGET_URL="${TARGET_URL%/}"
           echo "Target crawler URL: $TARGET_URL/api/cron/check-prices"
           
-          CRON_TOKEN="${{ secrets.CRON_SECRET || '695ad9c1f065fba1afa78c9a0eb5f4cc0c675509aec0f64b' }}"
+          CRON_TOKEN="$INPUT_CRON_SECRET"
+          if [ -z "$CRON_TOKEN" ]; then
+            CRON_TOKEN="695ad9c1f065fba1afa78c9a0eb5f4cc0c675509aec0f64b"
+          fi
           
           RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X GET "$TARGET_URL/api/cron/check-prices?key=$CRON_TOKEN" \
                -H "Authorization: Bearer $CRON_TOKEN")

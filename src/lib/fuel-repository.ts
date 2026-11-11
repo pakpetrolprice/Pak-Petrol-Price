@@ -115,7 +115,7 @@ export class FuelRepository {
             apikey: anonKey,
             Authorization: `Bearer ${anonKey}`,
           },
-          next: { revalidate: 60, tags: ['price_records'] },
+          cache: 'no-store',
         });
 
         if (res.ok) {
@@ -126,8 +126,11 @@ export class FuelRepository {
 
             // Self-healing automatic crawl check (runs every 2 hours if external cron was delayed)
             const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
-            const latestVerified = this.cachedRecords[0]?.verificationTimestamp;
-            const timeSinceVerified = latestVerified ? now - new Date(latestVerified).getTime() : TWO_HOURS_MS + 1;
+            const latestVerifiedTime = this.cachedRecords.reduce((max, r) => {
+              const t = r.verificationTimestamp ? new Date(r.verificationTimestamp).getTime() : 0;
+              return t > max ? t : max;
+            }, 0);
+            const timeSinceVerified = latestVerifiedTime > 0 ? now - latestVerifiedTime : TWO_HOURS_MS + 1;
 
             if (timeSinceVerified > TWO_HOURS_MS && now - this.lastAutoTrigger > 15 * 60 * 1000) {
               this.lastAutoTrigger = now;
