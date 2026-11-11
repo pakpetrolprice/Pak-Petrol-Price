@@ -13,8 +13,7 @@ export const metadata: Metadata = {
     'Current verified Light Diesel Oil (LDO) price in Pakistan per litre. Official notifications from OGRA and Ministry of Energy with historical revisions.',
 };
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function LightDieselOilPage() {
   const latestPrices = await FuelRepository.getLatestPrices();

@@ -16,8 +16,7 @@ export const metadata: Metadata = {
     'Current verified Diesel price in Pakistan per litre. Official notifications from OGRA and Ministry of Energy with historical trends.',
 };
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function DieselPage() {
   const latestPrices = await FuelRepository.getLatestPrices();

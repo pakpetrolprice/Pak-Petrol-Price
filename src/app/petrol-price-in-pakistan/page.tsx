@@ -16,8 +16,7 @@ export const metadata: Metadata = {
     'Current verified Petrol price in Pakistan per litre. View price breakdown, recent changes, and historical revisions.',
 };
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function PetrolPage() {
   const latestPrices = await FuelRepository.getLatestPrices();

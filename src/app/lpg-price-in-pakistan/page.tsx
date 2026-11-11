@@ -13,8 +13,7 @@ export const metadata: Metadata = {
     'Current verified Liquefied Petroleum Gas (LPG) consumer price in Pakistan per kg and 11.8kg domestic cylinder. Official monthly notifications from OGRA.',
 };
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 60;
 
 export default async function LPGPage() {
   const latestPrices = await FuelRepository.getLatestPrices();
