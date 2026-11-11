@@ -41,17 +41,46 @@ export default async function CalculatorPage() {
           </span>
         </div>
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
-          Fuel Cost &amp; Trip Calculators
+          Fuel Cost &amp; Tank Fill Calculators
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
-          Estimate tank fill-up expenses or calculate fuel costs for your highway and commute journeys.
+          Estimate full vehicle tank fill-up expenses or calculate fuel costs for your highway trips and daily commutes in Pakistan.
         </p>
+
+        {/* Dedicated Tool Direct Links */}
+        <div className="flex flex-wrap gap-2 pt-2">
+          <Link
+            href="/fuel-cost-calculator"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold hover:bg-emerald-100 transition-colors"
+          >
+            <span>⚡ Fuel Cost Calculator</span>
+            <span>→</span>
+          </Link>
+          <Link
+            href="/fuel-tank-calculator"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300 text-xs font-bold hover:bg-blue-100 transition-colors"
+          >
+            <span>⛽ Fuel Tank Fill-Up Calculator</span>
+            <span>→</span>
+          </Link>
+        </div>
       </div>
 
       {/* Sequential Full-Width Stacked Calculators */}
       <div className="space-y-10 sm:space-y-14">
         {/* Tool 1: Fuel Tank Fill-Up Cost Calculator */}
-        <section id="tank-fill-calculator" className="w-full scroll-mt-24">
+        <section id="fuel-tank-calculator" className="w-full scroll-mt-24 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+              Tool 1 of 2
+            </span>
+            <Link
+              href="/fuel-tank-calculator"
+              className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+            >
+              Open Dedicated Page →
+            </Link>
+          </div>
           <TankFillCalculator
             petrolPrice={petrolPrice}
             dieselPrice={dieselPrice}
@@ -59,8 +88,19 @@ export default async function CalculatorPage() {
           />
         </section>
 
-        {/* Tool 2: Distance & Mileage Journey Calculator */}
-        <section id="trip-cost-calculator" className="w-full scroll-mt-24">
+        {/* Tool 2: Fuel Cost Calculator */}
+        <section id="fuel-cost-calculator" className="w-full scroll-mt-24 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+              Tool 2 of 2
+            </span>
+            <Link
+              href="/fuel-cost-calculator"
+              className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+            >
+              Open Dedicated Page →
+            </Link>
+          </div>
           <FuelCalculator
             initialPetrolPrice={petrolPrice}
             initialDieselPrice={dieselPrice}

@@ -14,6 +14,32 @@ export function Header() {
 
   const fuelsDropdownRef = useRef<HTMLDivElement>(null);
   const moreDropdownRef = useRef<HTMLDivElement>(null);
+  const fuelsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const moreTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleFuelsEnter = () => {
+    if (fuelsTimeoutRef.current) clearTimeout(fuelsTimeoutRef.current);
+    setFuelsOpen(true);
+  };
+
+  const handleFuelsLeave = () => {
+    if (fuelsTimeoutRef.current) clearTimeout(fuelsTimeoutRef.current);
+    fuelsTimeoutRef.current = setTimeout(() => {
+      setFuelsOpen(false);
+    }, 200);
+  };
+
+  const handleMoreEnter = () => {
+    if (moreTimeoutRef.current) clearTimeout(moreTimeoutRef.current);
+    setMoreOpen(true);
+  };
+
+  const handleMoreLeave = () => {
+    if (moreTimeoutRef.current) clearTimeout(moreTimeoutRef.current);
+    moreTimeoutRef.current = setTimeout(() => {
+      setMoreOpen(false);
+    }, 200);
+  };
 
   // Close dropdowns on outside click or route change
   useEffect(() => {
@@ -32,7 +58,11 @@ export function Header() {
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      if (fuelsTimeoutRef.current) clearTimeout(fuelsTimeoutRef.current);
+      if (moreTimeoutRef.current) clearTimeout(moreTimeoutRef.current);
+    };
   }, []);
 
   const isFuelActive =
@@ -98,12 +128,15 @@ export function Header() {
               <div
                 ref={fuelsDropdownRef}
                 className="relative"
-                onMouseEnter={() => setFuelsOpen(true)}
-                onMouseLeave={() => setFuelsOpen(false)}
+                onMouseEnter={handleFuelsEnter}
+                onMouseLeave={handleFuelsLeave}
               >
                 <button
                   type="button"
-                  onClick={() => setFuelsOpen(!fuelsOpen)}
+                  onClick={() => {
+                    if (fuelsTimeoutRef.current) clearTimeout(fuelsTimeoutRef.current);
+                    setFuelsOpen(!fuelsOpen);
+                  }}
                   className={`px-3.5 py-1.5 rounded-lg transition-all duration-150 select-none inline-flex items-center gap-1.5 cursor-pointer ${
                     isFuelActive || fuelsOpen
                       ? 'bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-xs border border-slate-200/80 dark:border-slate-700/80'
@@ -121,39 +154,41 @@ export function Header() {
                   </svg>
                 </button>
 
-                {/* Dropdown Menu */}
+                {/* Dropdown Menu with zero-gap padding bridge */}
                 {fuelsOpen && (
-                  <div className="absolute top-full left-0 mt-1.5 w-52 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl p-2 z-50 animate-fadeIn">
-                    <Link
-                      href="/petrol-price-in-pakistan"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                      <div>
-                        <span className="block">Super Petrol</span>
-                        <span className="block text-[10px] font-normal text-slate-400">Regular 92 RON</span>
-                      </div>
-                    </Link>
-                    <Link
-                      href="/diesel-price-in-pakistan"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-blue-500" />
-                      <div>
-                        <span className="block">High-Speed Diesel</span>
-                        <span className="block text-[10px] font-normal text-slate-400">HSD Euro 5</span>
-                      </div>
-                    </Link>
-                    <Link
-                      href="/hi-octane-price-in-pakistan"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-purple-500" />
-                      <div>
-                        <span className="block">Hi-Octane</span>
-                        <span className="block text-[10px] font-normal text-slate-400">Premium 97 RON</span>
-                      </div>
-                    </Link>
+                  <div className="absolute top-full left-0 pt-2 w-56 z-50 animate-fadeIn">
+                    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl p-2">
+                      <Link
+                        href="/petrol-price-in-pakistan"
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                        <div>
+                          <span className="block">Super Petrol</span>
+                          <span className="block text-[10px] font-normal text-slate-400">Regular 92 RON</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/diesel-price-in-pakistan"
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-blue-500" />
+                        <div>
+                          <span className="block">High-Speed Diesel</span>
+                          <span className="block text-[10px] font-normal text-slate-400">HSD Euro 5</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/hi-octane-price-in-pakistan"
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-purple-500" />
+                        <div>
+                          <span className="block">Hi-Octane</span>
+                          <span className="block text-[10px] font-normal text-slate-400">Premium 97 RON</span>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>
@@ -198,12 +233,15 @@ export function Header() {
               <div
                 ref={moreDropdownRef}
                 className="relative"
-                onMouseEnter={() => setMoreOpen(true)}
-                onMouseLeave={() => setMoreOpen(false)}
+                onMouseEnter={handleMoreEnter}
+                onMouseLeave={handleMoreLeave}
               >
                 <button
                   type="button"
-                  onClick={() => setMoreOpen(!moreOpen)}
+                  onClick={() => {
+                    if (moreTimeoutRef.current) clearTimeout(moreTimeoutRef.current);
+                    setMoreOpen(!moreOpen);
+                  }}
                   className={`px-3.5 py-1.5 rounded-lg transition-all duration-150 select-none inline-flex items-center gap-1.5 cursor-pointer ${
                     isMoreActive || moreOpen
                       ? 'bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-xs border border-slate-200/80 dark:border-slate-700/80'
@@ -221,45 +259,47 @@ export function Header() {
                   </svg>
                 </button>
 
-                {/* Dropdown Menu */}
+                {/* Dropdown Menu with zero-gap padding bridge */}
                 {moreOpen && (
-                  <div className="absolute top-full right-0 mt-1.5 w-52 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl p-2 z-50 animate-fadeIn">
-                    <Link
-                      href="/about"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
-                    >
-                      <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <div>
-                        <span className="block">About Us</span>
-                        <span className="block text-[10px] font-normal text-slate-400">Our mission &amp; data</span>
-                      </div>
-                    </Link>
-                    <Link
-                      href="/advertise"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
-                    >
-                      <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-                      </svg>
-                      <div>
-                        <span className="block">Advertise With Us</span>
-                        <span className="block text-[10px] font-normal text-slate-400">Partner &amp; reach motorists</span>
-                      </div>
-                    </Link>
-                    <Link
-                      href="/contact"
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
-                    >
-                      <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      <div>
-                        <span className="block">Contact Us</span>
-                        <span className="block text-[10px] font-normal text-slate-400">Feedback &amp; inquiries</span>
-                      </div>
-                    </Link>
+                  <div className="absolute top-full right-0 pt-2 w-56 z-50 animate-fadeIn">
+                    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl p-2">
+                      <Link
+                        href="/about"
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                      >
+                        <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                          <span className="block">About Us</span>
+                          <span className="block text-[10px] font-normal text-slate-400">Our mission &amp; data</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/advertise"
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                      >
+                        <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                        </svg>
+                        <div>
+                          <span className="block">Advertise With Us</span>
+                          <span className="block text-[10px] font-normal text-slate-400">Partner &amp; reach motorists</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href="/contact"
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                      >
+                        <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <div>
+                          <span className="block">Contact Us</span>
+                          <span className="block text-[10px] font-normal text-slate-400">Feedback &amp; inquiries</span>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>
@@ -327,11 +367,25 @@ export function Header() {
                   Tools &amp; Content
                 </span>
                 <Link
+                  href="/fuel-cost-calculator"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="min-h-[40px] flex items-center px-3 py-2 rounded-xl font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                >
+                  ⚡ Fuel Cost Calculator
+                </Link>
+                <Link
+                  href="/fuel-tank-calculator"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="min-h-[40px] flex items-center px-3 py-2 rounded-xl font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                >
+                  ⛽ Tank Fill-Up Calculator
+                </Link>
+                <Link
                   href="/petrol-calculator"
                   onClick={() => setMobileMenuOpen(false)}
                   className="min-h-[40px] flex items-center px-3 py-2 rounded-xl font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
                 >
-                  Fuel Calculators
+                  All Calculators Suite
                 </Link>
                 <Link
                   href="/petrol-price-history"

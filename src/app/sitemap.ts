@@ -18,6 +18,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { route: '/light-diesel-oil-price-in-pakistan', changeFrequency: 'daily', priority: 0.85 },
     { route: '/lpg-price-in-pakistan', changeFrequency: 'daily', priority: 0.85 },
     { route: '/petrol-calculator', changeFrequency: 'weekly', priority: 0.9 },
+    { route: '/fuel-cost-calculator', changeFrequency: 'weekly', priority: 0.9 },
+    { route: '/fuel-tank-calculator', changeFrequency: 'weekly', priority: 0.9 },
     { route: '/petrol-price-history', changeFrequency: 'daily', priority: 0.85 },
     { route: '/diesel-price-history', changeFrequency: 'daily', priority: 0.85 },
     { route: '/fuel-price-changes', changeFrequency: 'daily', priority: 0.85 },

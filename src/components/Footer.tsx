@@ -71,13 +71,18 @@ export function Footer() {
             </h3>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <Link href="/petrol-calculator" className="text-slate-400 hover:text-white transition">
-                  Tank Fill-Up Calculator
+                <Link href="/fuel-cost-calculator" className="text-slate-400 hover:text-white transition">
+                  Fuel Cost Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/petrol-calculator#calculator" className="text-slate-400 hover:text-white transition">
-                  Trip &amp; Commute Estimator
+                <Link href="/fuel-tank-calculator" className="text-slate-400 hover:text-white transition">
+                  Fuel Tank Fill-Up Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/petrol-calculator" className="text-slate-400 hover:text-white transition">
+                  All Calculators Suite
                 </Link>
               </li>
               <li>

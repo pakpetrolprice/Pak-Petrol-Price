@@ -425,6 +425,8 @@ export async function GET(request: NextRequest) {
     revalidatePath('/diesel-price-history');
     revalidatePath('/fuel-price-changes');
     revalidatePath('/petrol-calculator');
+    revalidatePath('/fuel-cost-calculator');
+    revalidatePath('/fuel-tank-calculator');
   } catch {
     // Safe outside Next.js request context
   }

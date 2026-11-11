@@ -216,10 +216,10 @@ export function FuelCalculator({
       {/* Header */}
       <div className="border-b border-slate-200 dark:border-slate-800 pb-3 mb-4">
         <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide mb-1.5">
-          <span>⚡ Fuel Trip Calculator</span>
+          <span>⚡ Fuel Cost Calculator</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
-          What Your Trip Costs At Today&apos;s Rate
+          Fuel Cost &amp; Journey Expense Calculator
         </h2>
         <p className="text-xs text-slate-600 dark:text-slate-300 mt-0.5">
           Estimate precise fuel expenses by vehicle model, custom distance, or exact litres pumped in Pakistan.
@@ -518,7 +518,7 @@ export function FuelCalculator({
         <div className="lg:col-span-5 bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-emerald-200/40 dark:from-slate-800 dark:via-slate-800/90 dark:to-emerald-950/40 rounded-2xl border border-emerald-300 dark:border-slate-700 p-4 sm:p-5 space-y-3.5 shadow-xs overflow-hidden">
           <div className="min-w-0">
             <span className="text-xs font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300 block mb-1">
-              {mode === 'by_litres' ? 'Total Fuel Cost' : 'Estimated Trip Fuel Cost'}
+              {mode === 'by_litres' ? 'Total Fuel Cost' : 'Estimated Fuel Cost'}
             </span>
             <div className="flex flex-wrap items-baseline gap-1.5 min-w-0">
               <span className="text-base sm:text-lg font-black text-slate-500 dark:text-slate-400">Rs.</span>

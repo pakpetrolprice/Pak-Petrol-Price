@@ -161,3 +161,89 @@ export const CITY_PAGE_FAQS: FAQItem[] = [
       'Yes. Deregulated fuels such as Hi-Octane (RON 97) and CNG may carry regional price variations based on private oil marketing company supply chain costs and local station overheads.',
   },
 ];
+
+export const FUEL_COST_CALCULATOR_FAQS: FAQItem[] = [
+  {
+    question: 'How do I calculate trip fuel cost for my vehicle in Pakistan?',
+    answer:
+      'To calculate trip fuel expense: divide your total journey distance (in kilometers) by your vehicle’s average fuel economy (km per litre), then multiply the resulting litres by the current official fuel price per litre. For example, traveling 100 KM in an Alto averaging 18 km/L consumes 5.56 litres, costing approx. Rs. 1,860 at Rs. 335/litre.',
+  },
+  {
+    question: 'What is the formula to calculate fuel cost per kilometer (KM)?',
+    answer:
+      'The formula is: Cost per KM = Current Fuel Price per Litre ÷ Vehicle Mileage (km/L). For instance, if petrol is Rs. 335/L and your car delivers 14 km/L, your running cost is Rs. 23.93 per kilometer. For a CD 70 delivering 55 km/L, the running cost is only Rs. 6.09 per kilometer.',
+  },
+  {
+    question: 'What is the real-world petrol average of popular cars and bikes in Pakistan?',
+    answer:
+      'Real-world city averages in mixed Pakistani traffic with AC: Suzuki Alto 660cc (17–19 km/L), Suzuki Cultus / Wagon R (15–16 km/L), Suzuki Swift (13–14 km/L), Toyota Yaris 1.3 (13–15 km/L), Toyota Corolla 1.6 (11–13 km/L), Honda Civic 1.5 Turbo (10–12 km/L), KIA Sportage (9–10 km/L), and Honda CD 70 motorcycle (50–55 km/L).',
+  },
+  {
+    question: 'How much petrol is needed for travel from Lahore to Islamabad via M-2 Motorway?',
+    answer:
+      'The distance from Lahore to Islamabad via the M-2 Motorway is approximately 375 KM. A standard 1.3L–1.6L sedan delivering 14 km/L on highway cruise requires approximately 26.8 litres of petrol (approx Rs. 8,978 one-way at Rs. 335/L). A Suzuki Alto averaging 20 km/L on highway needs approx. 18.75 litres (approx Rs. 6,281).',
+  },
+  {
+    question: 'How much fuel is required from Karachi to Hyderabad via M-9 Motorway?',
+    answer:
+      'The Karachi to Hyderabad distance via the M-9 Motorway is roughly 165 KM. A compact car averaging 15 km/L consumes approximately 11 litres of fuel (approx Rs. 3,685 one-way at current Rs. 335/L rates). A return trip requires approx. 22 litres (Rs. 7,370).',
+  },
+  {
+    question: 'Does turning on the car air conditioner (AC) consume more petrol in Pakistan?',
+    answer:
+      'Yes. In hot Pakistani summers, running the vehicle AC increases engine load and elevates fuel consumption by 10% to 20%, reducing city fuel economy by approximately 1.5 to 3 km per litre in stop-and-go traffic.',
+  },
+  {
+    question: 'What is the most economical speed to drive on Pakistani motorways for best fuel mileage?',
+    answer:
+      'The sweet spot for maximum fuel efficiency on motorways like M-2, M-3, and M-5 is between 80 km/h and 100 km/h. Driving at 120 km/h or above dramatically increases aerodynamic drag, causing up to 15% to 25% higher fuel consumption.',
+  },
+  {
+    question: 'Are petrol and diesel prices uniform across all petrol pumps in Pakistan?',
+    answer:
+      'Yes. Super Petrol (92 RON) and High-Speed Diesel (HSD) are strictly price-controlled by OGRA and the Ministry of Energy under the Inland Freight Equalization Margin (IFEM). Authorized PSO, Shell, Total Parco, and Attock Petroleum stations must sell at the exact notified rate nationwide.',
+  },
+];
+
+export const FUEL_TANK_CALCULATOR_FAQS: FAQItem[] = [
+  {
+    question: 'How do I calculate the full tank fill-up cost for my vehicle in Pakistan?',
+    answer:
+      'To calculate the cost of a full tank: multiply your vehicle’s total tank capacity (in litres) by the active fuel price per litre. If your tank is already partially full (e.g. half tank), multiply the remaining capacity needed by today’s price. Use our interactive Fuel Tank Calculator above to instantly calculate costs for any vehicle model.',
+  },
+  {
+    question: 'What is the fuel tank capacity of Suzuki Alto 660cc, Cultus, and Swift in Pakistan?',
+    answer:
+      'The fuel tank capacity of the Suzuki Alto (660cc) is 27 Litres. The Suzuki Cultus and Wagon R both feature a 35-Litre tank. The new Suzuki Swift 1.2L has a 37-Litre fuel tank capacity.',
+  },
+  {
+    question: 'What is the fuel tank capacity of Toyota Corolla, Yaris, and Honda Civic?',
+    answer:
+      'Toyota Corolla (Altis / GLi) features a 50-Litre fuel tank. Toyota Yaris has a 42-Litre tank. Honda Civic (1.5 Turbo / 1.8) has a 47-Litre tank, while the Honda City (1.2L / 1.5L) has a 40-Litre capacity.',
+  },
+  {
+    question: 'How many litres of petrol does a Honda CD 70 or CG 125 motorcycle tank hold?',
+    answer:
+      'A Honda CD 70 has a fuel tank capacity of 9.0 Litres (including approx. 1 Litre reserve). A Honda CG 125 has a 9.2-Litre tank (including approx. 2 Litres reserve). The Yamaha YBR 125 features a larger 13.0-Litre tank.',
+  },
+  {
+    question: 'How many litres are in the reserve tank of a car in Pakistan?',
+    answer:
+      'Most passenger cars in Pakistan (Corolla, Civic, Alto, City) do not have a physically separate reserve tank. Instead, the low fuel warning light illuminates when approximately 10% to 15% of the total capacity remains (usually 4 to 7 litres in sedans, and 2.5 to 3.5 litres in small hatchbacks).',
+  },
+  {
+    question: 'Can driving on an empty or low fuel tank damage my car in Pakistan?',
+    answer:
+      'Yes. In modern EFI cars, the electric fuel pump is submerged inside the fuel tank and cooled by the surrounding fuel. Driving frequently with the low fuel light on causes the pump to overheat. It also pulls settled debris and sediment from the bottom of the tank into the fuel filter and injectors.',
+  },
+  {
+    question: 'How much does it cost to top-off a half-empty fuel tank?',
+    answer:
+      'To top-off a half-empty tank, you only pay for 50% of your tank’s volume. For example, refilling a half-empty 50-Litre Toyota Corolla tank requires 25 litres, costing approx. Rs. 8,375 at Rs. 335/litre, saving you from running low during sudden price adjustments.',
+  },
+  {
+    question: 'What is the best time of day to fill petrol in Pakistan?',
+    answer:
+      'Early morning or late evening is the ideal time to refuel. Fuel expands in hot afternoon temperatures and becomes less dense. During cooler hours, petrol is denser, meaning you get marginally more mass and energy per pumped litre.',
+  },
+];
