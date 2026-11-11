@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     'Full official historical record of Diesel price changes in Pakistan. View previous revisions, effective dates, and OGRA notifications.',
 };
 
+export const revalidate = 60;
+
 export default async function DieselHistoryPage() {
   const allRevisions = await FuelRepository.getAllApprovedRevisions();
 

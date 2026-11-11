@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     'Full official historical record of Petrol, Diesel, and petroleum price changes in Pakistan. Filter revisions and effective dates.',
 };
 
+export const revalidate = 60;
+
 export default async function PetrolHistoryPage() {
   const allRevisions = await FuelRepository.getAllApprovedRevisions();
 

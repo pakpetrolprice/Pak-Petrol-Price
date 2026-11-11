@@ -12,10 +12,12 @@ export const metadata: Metadata = {
     'Calculate exact petrol, diesel and hi-octane fuel tank fill up cost and trip fuel consumption for cars and bikes across Pakistan with live OGRA rates.',
 };
 
+export const revalidate = 60;
+
 export default async function CalculatorPage() {
   const latestPrices = await FuelRepository.getLatestPrices();
-  const petrolPrice = latestPrices['petrol']?.pricePkr ?? 379.25;
-  const dieselPrice = latestPrices['diesel']?.pricePkr ?? 395.82;
+  const petrolPrice = latestPrices['petrol']?.pricePkr ?? 335.00;
+  const dieselPrice = latestPrices['diesel']?.pricePkr ?? 364.00;
   const hiOctanePrice = latestPrices['hi-octane']?.pricePkr ?? 415.00;
 
   return (

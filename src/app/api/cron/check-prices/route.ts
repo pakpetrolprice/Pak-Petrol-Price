@@ -38,8 +38,8 @@ async function scrapeAllFuelProducts(): Promise<ScrapedFuelRates> {
     notes: 'Official notified rates from OGRA / Petroleum Division / OMC Price Circular',
   };
 
-  // Launch official sources concurrently
-  const [psoResult, ograResult, ograLpgResult, lpgDataResult] = await Promise.allSettled([
+  // Launch official & verified notification sources concurrently
+  const [psoResult, ograResult, ograLpgResult, lpgDataResult, ptResult, tribResult] = await Promise.allSettled([
     fetch('https://psopk.com/en/fuels/fuel-prices', {
       headers: { 'User-Agent': userAgent },
       cache: 'no-store',
@@ -53,6 +53,14 @@ async function scrapeAllFuelProducts(): Promise<ScrapedFuelRates> {
       cache: 'no-store',
     }),
     fetch('https://pakhisaab.com/rates/lpg-price-today/', {
+      headers: { 'User-Agent': userAgent },
+      cache: 'no-store',
+    }),
+    fetch('https://pakistantoday.com.pk/', {
+      headers: { 'User-Agent': userAgent },
+      cache: 'no-store',
+    }),
+    fetch('https://tribune.com.pk/category/business', {
       headers: { 'User-Agent': userAgent },
       cache: 'no-store',
     }),
@@ -123,6 +131,50 @@ async function scrapeAllFuelProducts(): Promise<ScrapedFuelRates> {
     } catch (err) {
       console.warn('PSO fuels extraction error:', err);
     }
+  }
+
+  // 2b. Process Breaking Official Government Notifications & Price Circulars
+  // Captures midnight price changes immediately when announced, even if OMC web table is delayed
+  let breakingPetrol: number | undefined;
+  let breakingDiesel: number | undefined;
+
+  if (ptResult.status === 'fulfilled' && ptResult.value.ok) {
+    try {
+      const html = await ptResult.value.text();
+      const petMatch =
+        html.match(/petrol-price-(?:to|at|reaches|drops-to)-?rs?(\d{2,3})/i) ||
+        html.match(/(?:petrol|motor spirit)[^<]{1,80}?(?:rs\.?|pkr)?\s*(\d{3}(?:\.\d{1,2})?)/i);
+      const dieMatch =
+        html.match(/(?:diesel|hsd)-to-?rs?(\d{2,3})/i) ||
+        html.match(/(?:high speed diesel|diesel|hsd)[^<]{1,80}?(?:rs\.?|pkr)?\s*(\d{3}(?:\.\d{1,2})?)/i);
+      if (petMatch) breakingPetrol = parseFloat(petMatch[1]);
+      if (dieMatch) breakingDiesel = parseFloat(dieMatch[1]);
+    } catch (e) {
+      console.warn('Pakistan Today breaking rates extraction warning:', e);
+    }
+  }
+
+  if (tribResult.status === 'fulfilled' && tribResult.value.ok) {
+    try {
+      const html = await tribResult.value.text();
+      const petMatch =
+        html.match(/petrol\s+price\s+(?:decreases|increases|drops|to|at)\s+(?:to\s+)?Rs\.?\s*(\d{2,3})/i) ||
+        html.match(/(?:petrol|motor spirit)[^<]{1,80}?(?:rs\.?|pkr)?\s*(\d{3}(?:\.\d{1,2})?)/i);
+      const dieMatch =
+        html.match(/(?:hsd|diesel)\s+(?:will cost|price|to|at)\s+(?:to\s+)?Rs\.?\s*(\d{2,3})/i) ||
+        html.match(/(?:high speed diesel|diesel|hsd)[^<]{1,80}?(?:rs\.?|pkr)?\s*(\d{3}(?:\.\d{1,2})?)/i);
+      if (petMatch && !breakingPetrol) breakingPetrol = parseFloat(petMatch[1]);
+      if (dieMatch && !breakingDiesel) breakingDiesel = parseFloat(dieMatch[1]);
+    } catch (e) {
+      console.warn('Tribune breaking rates extraction warning:', e);
+    }
+  }
+
+  if (breakingPetrol && breakingPetrol >= 200 && breakingPetrol <= 500) {
+    result.petrol = breakingPetrol;
+  }
+  if (breakingDiesel && breakingDiesel >= 200 && breakingDiesel <= 500) {
+    result.diesel = breakingDiesel;
   }
 
   // Fallback defaults for deregulated / market verified rates if not in table

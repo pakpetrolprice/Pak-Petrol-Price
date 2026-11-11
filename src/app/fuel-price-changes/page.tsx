@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     'Track official fuel price increases and decreases in Pakistan. Filter by fuel type to see exact price differences in PKR per litre.',
 };
 
+export const revalidate = 60;
+
 export default async function FuelPriceChangesPage() {
   const revisions = await FuelRepository.getAllApprovedRevisions();
 
