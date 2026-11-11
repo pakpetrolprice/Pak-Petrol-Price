@@ -124,15 +124,15 @@ export class FuelRepository {
             this.cachedRecords = data.map(this.mapDbRecord);
             this.lastFetchTime = now;
 
-            // Self-healing automatic crawl check (runs if external cron was delayed past 3 hours)
-            const THREE_HOURS_MS = 3 * 60 * 60 * 1000;
+            // Self-healing automatic crawl check (runs if external cron was delayed past scheduled window)
+            const MAX_STALE_MS = 6 * 60 * 60 * 1000;
             const latestVerifiedTime = this.cachedRecords.reduce((max, r) => {
               const t = r.verificationTimestamp ? new Date(r.verificationTimestamp).getTime() : 0;
               return t > max ? t : max;
             }, 0);
-            const timeSinceVerified = latestVerifiedTime > 0 ? now - latestVerifiedTime : THREE_HOURS_MS + 1;
+            const timeSinceVerified = latestVerifiedTime > 0 ? now - latestVerifiedTime : MAX_STALE_MS + 1;
 
-            if (timeSinceVerified > THREE_HOURS_MS && now - this.lastAutoTrigger > 15 * 60 * 1000) {
+            if (timeSinceVerified > MAX_STALE_MS && now - this.lastAutoTrigger > 15 * 60 * 1000) {
               this.lastAutoTrigger = now;
               const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (typeof window === 'undefined' ? 'http://localhost:3000' : '');
               const cronSecret = process.env.CRON_SECRET || '695ad9c1f065fba1afa78c9a0eb5f4cc0c675509aec0f64b';

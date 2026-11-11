@@ -2,16 +2,16 @@ name: Scheduled Fuel Price Crawler
 
 on:
   schedule:
-    # Continuous 3-Hour Daily Cycle (Pakistan Standard Time — PKT, UTC+5):
-    # 1. 12:00 AM Night   (19:00 UTC previous day)
-    # 2. 03:00 AM Late    (22:00 UTC previous day)
-    # 3. 06:00 AM Morning (01:00 UTC)
-    # 4. 09:00 AM Morning (04:00 UTC)
-    # 5. 12:00 PM Noon    (07:00 UTC)
-    # 6. 03:00 PM Midday  (10:00 UTC)
-    # 7. 06:00 PM Evening (13:00 UTC)
-    # 8. 09:00 PM Night   (16:00 UTC)
-    - cron: '0 1,4,7,10,13,16,19,22 * * *'
+    # Schedule 1: High-Frequency Night Watcher (11:00 PM – 05:00 AM Pakistan Standard Time — PKT, UTC+5)
+    # Runs every 30 minutes during midnight price announcement window:
+    # 18:00, 18:30, 19:00, 19:30, 20:00, 20:30, 21:00, 21:30, 22:00, 22:30, 23:00, 23:30, 00:00 UTC
+    - cron: '0,30 18-23,0 * * *'
+
+    # Schedule 2: Daytime Standard Cycle (06:00 AM, 12:00 PM, 06:00 PM Pakistan Standard Time — PKT, UTC+5)
+    # Runs at morning, noon, and evening:
+    # 01:00 UTC (06:00 AM PKT), 07:00 UTC (12:00 PM PKT), 13:00 UTC (06:00 PM PKT)
+    - cron: '0 1,7,13 * * *'
+
   workflow_dispatch: # Allows instant manual trigger anytime from GitHub Actions tab
 
 jobs:
@@ -24,30 +24,31 @@ jobs:
           INPUT_NETLIFY_URL: ${{ secrets.NETLIFY_SITE_URL }}
           INPUT_CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          TARGET_URL="$INPUT_SITE_URL"
-          if [ -z "$TARGET_URL" ]; then
-            TARGET_URL="$INPUT_NETLIFY_URL"
-          fi
-          if [ -z "$TARGET_URL" ]; then
-            TARGET_URL="https://pakpetrolprice.pk"
-          fi
-          # Strip trailing slash if present
+          set -e
+          
+          # 1. Determine target base URL and sanitize whitespace/carriage returns
+          TARGET_URL="${INPUT_SITE_URL:-${INPUT_NETLIFY_URL:-https://pakpetrolprice.pk}}"
+          TARGET_URL=$(echo "$TARGET_URL" | tr -d '\r\n[:space:]')
           TARGET_URL="${TARGET_URL%/}"
-          echo "Target crawler URL: $TARGET_URL/api/cron/check-prices"
           
-          CRON_TOKEN="$INPUT_CRON_SECRET"
-          if [ -z "$CRON_TOKEN" ]; then
-            CRON_TOKEN="695ad9c1f065fba1afa78c9a0eb5f4cc0c675509aec0f64b"
-          fi
+          # 2. Determine secret authorization token
+          CRON_TOKEN="${INPUT_CRON_SECRET:-695ad9c1f065fba1afa78c9a0eb5f4cc0c675509aec0f64b}"
+          CRON_TOKEN=$(echo "$CRON_TOKEN" | tr -d '\r\n[:space:]')
           
-          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X GET "$TARGET_URL/api/cron/check-prices?key=$CRON_TOKEN" \
-               -H "Authorization: Bearer $CRON_TOKEN")
+          FULL_ENDPOINT="${TARGET_URL}/api/cron/check-prices?key=${CRON_TOKEN}"
+          echo "Triggering Crawler Endpoint: ${TARGET_URL}/api/cron/check-prices"
           
-          echo "$RESPONSE"
+          # 3. Execute curl on a single line to prevent Windows CRLF backslash escape errors
+          HTTP_RESPONSE=$(curl -sSL -w "\nHTTP_STATUS:%{http_code}" -X GET "$FULL_ENDPOINT" -H "Authorization: Bearer ${CRON_TOKEN}")
           
-          HTTP_STATUS=$(echo "$RESPONSE" | tr -d '\r' | sed -n 's/.*HTTP_STATUS://p')
-          if [ "$HTTP_STATUS" != "200" ]; then
-            echo "Crawler endpoint failed with HTTP $HTTP_STATUS"
+          echo "$HTTP_RESPONSE"
+          
+          # 4. Extract and validate HTTP status code
+          STATUS_CODE=$(echo "$HTTP_RESPONSE" | tr -d '\r' | sed -n 's/.*HTTP_STATUS://p')
+          
+          if [ "$STATUS_CODE" != "200" ]; then
+            echo "::error::Crawler endpoint failed with HTTP status: $STATUS_CODE"
             exit 1
           fi
+          
           echo "All 6 fuel rates scraped, verified, and updated successfully."
