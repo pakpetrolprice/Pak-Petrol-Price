@@ -11,6 +11,9 @@ import { PriceChart } from '@/components/PriceChart';
 import { AdPlacement } from '@/components/AdPlacement';
 import { WordPressService } from '@/lib/wordpress';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function HomePage() {
   const products = await FuelRepository.getActiveProducts();
   const latestPrices = await FuelRepository.getLatestPrices();

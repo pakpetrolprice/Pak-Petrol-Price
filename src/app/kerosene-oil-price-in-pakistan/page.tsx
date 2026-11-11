@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     'Current verified Superior Kerosene Oil (SKO) price in Pakistan per litre. Official notifications from OGRA and Petroleum Division with historical trends.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function KerosenePage() {
   const latestPrices = await FuelRepository.getLatestPrices();
   const products = await FuelRepository.getActiveProducts();

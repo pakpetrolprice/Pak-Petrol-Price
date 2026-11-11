@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     'Current verified Hi-Octane (Octane+ Euro 5 / 97 RON) price in Pakistan published by Pakistan State Oil (PSO) and private oil marketing companies.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function HiOctanePage() {
   const latestPrices = await FuelRepository.getLatestPrices();
   const products = await FuelRepository.getActiveProducts();
